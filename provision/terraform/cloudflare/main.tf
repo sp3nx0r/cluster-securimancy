@@ -108,3 +108,11 @@ resource "cloudflare_record" "hajimari" {
   type    = "CNAME"
   ttl     = 1
 }
+
+resource "cloudflare_record" "keybase_proof" {
+  name    = "securimancy.com"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = data.sops_file.cloudflare_secrets.data["cloudflare_keybase_verification"]
+  type    = "TXT"
+  ttl     = 1
+}
