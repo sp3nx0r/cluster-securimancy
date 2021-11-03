@@ -2,6 +2,8 @@
 - hosts:
     - master
     - worker
+  collections:
+    - devsec.hardening
   become: true
   gather_facts: true
   any_errors_fatal: true
@@ -9,5 +11,14 @@
     - name: Pausing for 5 seconds...
       pause:
         seconds: 5
+  tasks:
+    - name: Set SSH banner
+      copy:
+        dest: "/etc/ssh/banner.txt"
+        content: "INSERT SOME ASCII ART BULLSHIT HERE"
   roles:
     - ubuntu
+    - ssh_hardening
+    - os_hardening
+  vars:
+    - ssh_banner: true

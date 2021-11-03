@@ -1,6 +1,7 @@
 ---
 # (string) Timezone for the servers
-# timezone: "America/New_York"
+timezone: "America/Chicago"
 
 # (list) Additional ssh public keys to add to the nodes
-# ssh_authorized_keys:
+ssh_authorized_keys:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCaOhXuJW7NQUgJoHDYR0axPC0+Ay30CO7DzZNTVHz8x7GHX0wJMhGSnREJZaosdsu1PiZzFpvfDsok7pAc7tMfbtn5X1qs5vNTqArUG6Zhj+/SZkbicj6nDKdLags9GlIRBdPlHcItsR+HGwLTXb4mp/5LKbTCb8qrn+ywCG4cz4xspo9AuIruzLxPIiQL1XEUxtYhZI8Y0k9Ok8BJka33Doc7iTZErpMPtfZH9+aFYK1M5lzWKYAgUyvlm6QOcQO6MbxYUkl4RhDpNiaxfkVYmlCNTpuwycakSUZP2zQ/mr6HpetE8p8Jnb7144JLOke6rCQllrAnW2z5i+ENQ0Nl"
