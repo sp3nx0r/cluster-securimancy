@@ -22,3 +22,5 @@
     - os_hardening
   vars:
     - ssh_banner: true
+
+# TODO: add setup for multipass and network bridge definition
