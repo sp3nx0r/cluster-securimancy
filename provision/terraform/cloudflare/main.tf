@@ -116,3 +116,5 @@ resource "cloudflare_record" "keybase_proof" {
   type    = "TXT"
   ttl     = 1
 }
+
+# TODO: add email / MX records
