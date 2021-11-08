@@ -15,6 +15,7 @@
     name:
       - apt-transport-https
       - arptables
+      - bash-completion
       - ca-certificates
       - curl
       - ebtables

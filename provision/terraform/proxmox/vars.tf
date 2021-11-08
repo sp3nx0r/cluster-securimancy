@@ -32,7 +32,7 @@ variable "num_k3s_masters_mem" {
 }
 
 variable "num_k3s_nodes" {
- default = 3
+ default = 4
 }
 
 variable "num_k3s_nodes_mem" {

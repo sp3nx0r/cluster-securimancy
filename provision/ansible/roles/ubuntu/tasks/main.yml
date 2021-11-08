@@ -18,3 +18,8 @@
 - include: user.yml
   tags:
     - user
+
+- include: autocompletion.yml
+  tags:
+    - autocompletion
+

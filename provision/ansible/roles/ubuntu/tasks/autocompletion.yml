@@ -1,0 +1,14 @@
+---
+- name: Install bash-completion if it's yet there
+  apt:
+    name: bash-completion
+    state: present
+  when:
+    - '"bash-completion" not in ansible_facts.packages'
+
+- name: Add kubectl bash completion
+  ansible.builtin.blockinfile:
+    path: /etc/bash_completion.d
+    create: true
+    block: |
+      kubectl completion bash
