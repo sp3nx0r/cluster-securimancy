@@ -70,7 +70,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /tycho/Media
+            path: /storage/share/plex-data/Media
         mountPath: /media
     podAnnotations:
       # backup.velero.io/backup-volumes: config
