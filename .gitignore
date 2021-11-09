@@ -14,4 +14,4 @@ xanmanning.k3s*
 .terraform
 .terraform.tfstate*
 terraform.tfstate*
-.terraform.locl.hcl
+.terraform.lock.hcl

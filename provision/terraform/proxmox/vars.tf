@@ -16,7 +16,6 @@ variable "proxmox-host" {
   description = "The IP for proxmox host"
   type        = string
   default = "192.168.5.10"
-
 }
 
 variable "pvt_key" {
@@ -32,7 +31,7 @@ variable "num_k3s_masters_mem" {
 }
 
 variable "num_k3s_nodes" {
- default = 4
+ default = 3
 }
 
 variable "num_k3s_nodes_mem" {

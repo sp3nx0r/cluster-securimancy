@@ -70,3 +70,9 @@
       when:
         - k3s_server_manifests_urls
         - k3s_server_manifests_urls | length > 0
+
+    - name: Add kubectl bash completion
+      ansible.builtin.shell: "kubectl completion bash >/etc/bash_completion.d/kubectl"
+      when:
+        - k3s_control_node is defined
+        - k3s_control_node

@@ -75,3 +75,9 @@ tasks:
     dir: provision/ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/usr/bin/systemctl poweroff' --become"
+
+  adhoc:proxmox-upgrade:
+    descr: Upgrade proxmox host OS
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/proxmox.yml {{.ANSIBLE_PLAYBOOK_DIR}}/proxmox-upgrade.yml"

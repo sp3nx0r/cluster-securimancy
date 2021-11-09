@@ -1,0 +1,6 @@
+---
+proxmox:
+  hosts:
+    192.168.5.10
+  vars:
+    ansible_user: root

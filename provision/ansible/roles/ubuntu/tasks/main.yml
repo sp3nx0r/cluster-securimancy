@@ -19,7 +19,6 @@
   tags:
     - user
 
-- include: autocompletion.yml
+- include: aliases.yml
   tags:
-    - autocompletion
-
+    - aliases
