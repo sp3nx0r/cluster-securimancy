@@ -12,6 +12,7 @@
       pause:
         seconds: 5
   roles:
-    - ubuntu
+    - ssh_hardening
+    - os_hardening
   vars:
     - ssh_banner: true

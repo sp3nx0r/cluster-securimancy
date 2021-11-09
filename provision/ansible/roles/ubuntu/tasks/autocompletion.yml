@@ -1,14 +1,18 @@
 ---
-- name: Install bash-completion if it's yet there
-  apt:
+- name: Check bash-completion is installed
+  package:
     name: bash-completion
     state: present
-  when:
-    - '"bash-completion" not in ansible_facts.packages'
+  check_mode: true
 
 - name: Add kubectl bash completion
+  ansible.builtin.shell: "kubectl completion bash >/etc/bash_completion.d/kubectl"
+
+- name: Add aliases
   ansible.builtin.blockinfile:
-    path: /etc/bash_completion.d
+    path: /etc/profile.d/00-aliases.sh
     create: true
+    mode: 0644
     block: |
-      kubectl completion bash
+      alias k='kubectl'
+      alias ..='cd ..'
