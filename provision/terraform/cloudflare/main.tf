@@ -117,4 +117,26 @@ resource "cloudflare_record" "keybase_proof" {
   ttl     = 1
 }
 
-# TODO: add email / MX records
+resource "cloudflare_record" "email_security_spf" {
+  name    = "securimancy.com"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = "v=spf1 -all"
+  type    = "TXT"
+  ttl     = 1
+}
+
+resource "cloudflare_record" "email_security_dkim" {
+  name    = "*._domainkey"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = "v=DKIM1; p="
+  type    = "TXT"
+  ttl     = 1
+}
+
+resource "cloudflare_record" "email_security_dmarc" {
+  name    = "_dmarc"
+  zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  value   = "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;"
+  type    = "TXT"
+  ttl     = 1
+}
