@@ -26,7 +26,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
   cores       = 2
 
   ipconfig0 = "ip=192.168.5.8${count.index + 1}/24,gw=192.168.5.1"
-
+  nameserver = "192.168.5.1"
 }
 
 resource "proxmox_vm_qemu" "proxmox_vm_workers" {
@@ -40,7 +40,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_workers" {
   cores       = 2
 
   ipconfig0 = "ip=192.168.5.9${count.index + 1}/24,gw=192.168.5.1"
-
+  nameserver = "192.168.5.1"
 }
 
 data "template_file" "k8s" {
