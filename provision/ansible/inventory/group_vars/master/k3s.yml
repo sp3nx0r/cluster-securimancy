@@ -51,3 +51,5 @@ k3s_server:
   # Required for HAProxy health-checks
   kube-apiserver-arg:
     - "anonymous-auth=true"
+  # bug with k3s & CoreDNS and systemd-network
+  resolv-conf: "/run/systemd/resolve/resolv.conf"

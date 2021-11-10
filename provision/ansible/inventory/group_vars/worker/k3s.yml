@@ -13,3 +13,5 @@ k3s_agent:
     - "feature-gates=GracefulNodeShutdown=true"
     # Allow k8s services to contain TCP and UDP on the same port
     - "feature-gates=MixedProtocolLBService=true"
+  # bug with k3s & CoreDNS and systemd-network
+  resolv-conf: "/run/systemd/resolve/resolv.conf"
