@@ -31,7 +31,7 @@ spec:
     # use nfsvers=4, since my NAS support that
       mountOptions:
       - noatime
-      - nfsvers=4
+      - nfsvers=3
       secrets:
         provisioner-secret:
         controller-publish-secret:

@@ -6,4 +6,5 @@ resources:
   - democratic-csi
   - kube-system
   - metallb-system
+  - nfs-subdir-external-provisioner
   - system-upgrade
