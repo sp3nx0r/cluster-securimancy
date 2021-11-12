@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: router
+  namespace: networking
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+spec:
+  type: ExternalName
+  ports:
+    - name: https
+      port: 8080
+      targetPort: 8080
+  externalName: 192.168.5.1
