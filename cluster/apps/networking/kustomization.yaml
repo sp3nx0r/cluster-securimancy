@@ -4,5 +4,5 @@ resources:
   # - cloudflare-ddns
   - external-dns
   - traefik
-  # - unifi-controller
+  - unifi-controller
   - wildcard-certificate
