@@ -22,6 +22,8 @@ spec:
       tag: "v6.4.54"
     service:
       main:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_UNIFI_CONTROLLER}
         ports:
           speedtest:
             enabled: false
