@@ -17,6 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    # manually pin image tag until chart gets updated (currently on 6.2.x)
+    image:
+      tag: "v6.4.54"
     service:
       main:
         ports:
