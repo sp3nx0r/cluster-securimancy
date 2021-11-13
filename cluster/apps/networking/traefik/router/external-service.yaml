@@ -11,4 +11,4 @@ spec:
     - name: https
       port: 8080
       targetPort: 8080
-  externalName: 192.168.5.1
+  externalName: "${GATEWAY_ADDR}"

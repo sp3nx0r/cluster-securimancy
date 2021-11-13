@@ -11,4 +11,4 @@ spec:
     - name: https
       port: 8006
       targetPort: 8006
-  externalName: 192.168.5.10
+  externalName: "${PROXMOX_ADDR}"
