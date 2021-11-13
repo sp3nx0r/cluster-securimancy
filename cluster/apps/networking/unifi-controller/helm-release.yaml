@@ -52,3 +52,7 @@ spec:
         existingClaim: unifi-controller-config-v1
     env:
       TZ: "America/Chicago"
+    securityContext:
+      allowPrivilegeEscalation: false
+      # TODO: unifi sets JVM config that prevents this setting, look into how to harden
+      # readOnlyRootFilesystem: true

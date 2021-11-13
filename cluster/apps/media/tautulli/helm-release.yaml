@@ -56,6 +56,9 @@ spec:
         cpu: 500m
       limits:
         memory: 750Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
     # additionalContainers:
     #   fsfreeze:
     #     name: fsfreeze
