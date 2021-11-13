@@ -1,0 +1,24 @@
+---
+- include: apt-sources.yml
+  tags:
+    - apt-sources
+
+- include: packages.yml
+  tags:
+    - packages
+
+- include: filesystem.yml
+  tags:
+    - filesystem
+
+- include: iommu-passthrough.yml
+  tags:
+    - iommu
+
+- include: nfs-server.yml
+  tags:
+    - nfs-server
+
+- include: preferences.yml
+  tags:
+    - preferences

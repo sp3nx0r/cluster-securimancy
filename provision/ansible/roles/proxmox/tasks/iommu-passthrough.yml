@@ -1,0 +1,22 @@
+# https://gist.github.com/cmer/4c24fb801ee03a32b0375ef5650c4107
+---
+- name: Enable IOMMU modules
+  ansible.builtin.blockinfile:
+    path: /etc/modules
+    insertafter: EOF
+    block: |
+      vfio
+      vfio_iommu_type1
+      vfio_pci
+      vfio_virqfd
+
+- name: Enable IOMMU in grub
+  ansible.builtin.replace:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT="quiet"$'
+    replace: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on net.ifnames=0"'
+  register: iommu_grub
+
+- name: Update grub
+  ansible.builtin.command: update-grub
+  when: iommu_grub.changed

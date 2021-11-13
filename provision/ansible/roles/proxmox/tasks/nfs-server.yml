@@ -1,0 +1,12 @@
+---
+- name: Setup NFS server config
+  ansible.builtin.copy:
+    dest: /etc/exports
+    content: |
+      /storage/share/plex-data 192.168.5.1/24(rw,sync,no_subtree_check,no_root_squash)
+      /storage 192.168.5.1/24(rw,sync,no_subtree_check,no_root_squash)
+  register: nfs_server_config
+
+- name: Restart NFS server
+  ansible.builtin.command: 'service nfs-server restart'
+  when: nfs_server_config.changed

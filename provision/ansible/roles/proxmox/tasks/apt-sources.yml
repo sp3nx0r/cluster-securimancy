@@ -1,0 +1,24 @@
+# This assumes we're using Proxmox 7 running on Debian 11
+---
+- name: Add non-free packages and backports to debian sources
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list
+    content: |
+      deb http://ftp.us.debian.org/debian bullseye main contrib non-free
+      deb http://ftp.us.debian.org/debian bullseye-updates main contrib non-free
+      # security updates
+      deb http://security.debian.org bullseye-security main contrib non-free
+      deb http://deb.debian.org/debian bullseye-backports main contrib non-free
+
+- name: Create Proxmox community source file
+  ansible.builtin.blockinfile:
+    path: /etc/apt/sources.list.d/pve-community.list
+    create: true
+    block: |
+      deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription
+
+- name: Remove Proxmox enterprise repo from sources
+  ansible.builtin.replace:
+    path: /etc/apt/sources.list.d/pve-enterprise.list
+    regexp: '^deb deb .*pve bullseye pve-enterprise$'
+    replace: '# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise'
