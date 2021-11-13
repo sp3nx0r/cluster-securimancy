@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxmox
+  namespace: networking
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+spec:
+  type: ExternalName
+  ports:
+    - name: https
+      port: 8006
+      targetPort: 8006
+  externalName: 192.168.5.10
