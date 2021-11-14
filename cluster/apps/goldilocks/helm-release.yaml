@@ -1,0 +1,71 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: goldilocks
+  namespace: goldilocks
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.fairwinds.com/stable/
+      chart: goldilocks
+      version: 4.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds-stable-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    vpa:
+      # vpa.enabled -- If true, the vpa will be installed as a sub-chart
+      enabled: false
+      updater:
+        enabled: false
+
+    metrics-server:
+      # metrics-server.enabled -- If true, the metrics-server will be installed as a sub-chart
+      enabled: false
+      apiService:
+        create: true
+
+    controller:
+      # controller.logVerbosity -- Controller log verbosity. Can be set from 1-10 with 10 being extremely verbose
+      logVerbosity: "2"
+      resources:
+        limits:
+          cpu: 25m
+          memory: 32Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi
+
+    dashboard:
+      # dashboard.enabled -- If true, the dashboard component will be installed
+      enabled: true
+      # dashboard.replicaCount -- Number of dashboard pods to run
+      replicaCount: 1
+      service:
+        # dashboard.service.type -- The type of the dashboard service
+        type: ClusterIP
+        # dashboard.service.port -- The port to run the dashboard service on
+        port: 80
+        # dashboard.service.annotations -- Extra annotations for the dashboard service
+        annotations: {}
+      # dashboard.logVerbosity -- Dashboard log verbosity. Can be set from 1-10 with 10 being extremely verbose
+      logVerbosity: "2"
+      # dashboard.excludeContainers -- Container names to exclude from displaying in the Goldilocks dashboard
+      excludeContainers: "linkerd-proxy,istio-proxy"
+
+      ingress:
+        # dashboard.ingress.enabled -- Enables an ingress object for the dashboard.
+        enabled: false
+
+      # dashboard.resources -- A resources block for the dashboard.
+      resources:
+        limits:
+          cpu: 25m
+          memory: 32Mi
+        requests:
+          cpu: 25m
+          memory: 32Mi

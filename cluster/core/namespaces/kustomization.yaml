@@ -3,6 +3,9 @@ kind: Kustomization
 resources:
   - calico-system.yaml
   - cert-manager.yaml
+  - goldilocks.yaml
+  - harbor.yaml
+  - keycloak.yaml
   - media.yaml
   - metallb-system.yaml
   - networking.yaml
