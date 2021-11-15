@@ -4,7 +4,7 @@ resources:
   - default
   - goldilocks
   - harbor
-  # - keycloak
+  - keycloak
   - kube-system
   - media
   - networking
