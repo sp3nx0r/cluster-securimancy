@@ -79,13 +79,13 @@ spec:
     # the IP address of k8s node
     #
     # If Harbor is deployed behind the proxy, set it as the URL of proxy
-    externalURL: https://core.harbor.${SECRET_DOMAIN}
+    externalURL: http://harbor.${SECRET_DOMAIN}
 
     # The internal TLS used for harbor components secure communicating. In order to enable https
     # in each components tls cert files need to provided in advance.
     internalTLS:
       # If internal TLS enabled
-      enabled: false
+      enabled: true
       # There are three ways to provide tls
       # 1) "auto" will generate cert automatically
       # 2) "manual" need provide cert file manually in following value
