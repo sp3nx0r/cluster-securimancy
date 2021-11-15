@@ -26,4 +26,4 @@ spec:
               service:
                 name: goldilocks-dashboard
                 port:
-                  number: 443
+                  number: 80
