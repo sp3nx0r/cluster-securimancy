@@ -24,10 +24,9 @@ spec:
       TZ: "America/Chicago"
     service:
       main:
-        type: ClusterIP
-        # externalIPs:
-        #   - "${SVC_PLEX_ADDR}"
-        # externalTrafficPolicy: Local
+        type: LoadBalancer
+        loadBalancerIP: "${SVC_PLEX_ADDR}"
+        externalTrafficPolicy: Cluster
         annotations:
           traefik.ingress.kubernetes.io/service.serversscheme: https
     ingress:
@@ -60,11 +59,13 @@ spec:
         volumeSpec:
           nfs:
             server: "${NAS_ADDR}"
-            path: /storage/share/plex-data/Media
-        mountPath: /media
-        readOnly: true
+            path: /storage/share/plex-data/
+        mountPath: /data
+        readOnly: false
       transcode:
-        enabled: false
+        enabled: true
+        type: emptyDir
+        medium: Memory
     podAnnotations:
       # backup.velero.io/backup-volumes: config
       # pre.hook.backup.velero.io/container: fsfreeze
