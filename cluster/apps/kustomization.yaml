@@ -6,6 +6,6 @@ resources:
   - harbor
   - keycloak
   - kube-system
-  - media
+  # - media
   - networking
   - system-upgrade
