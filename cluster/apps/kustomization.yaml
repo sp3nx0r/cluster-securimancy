@@ -7,5 +7,6 @@ resources:
   - keycloak
   - kube-system
   # - media
+  - monitoring
   - networking
   - system-upgrade
