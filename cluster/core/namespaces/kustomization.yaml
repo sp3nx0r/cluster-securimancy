@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - calico-system.yaml
   - cert-manager.yaml
+  - falco-system.yaml
   - goldilocks.yaml
   - harbor.yaml
   - keycloak.yaml

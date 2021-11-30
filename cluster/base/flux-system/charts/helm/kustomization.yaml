@@ -8,6 +8,7 @@ resources:
   - descheduler-charts.yaml
   - external-dns-charts.yaml
   - fairwinds-stable-charts.yaml
+  - falco-security-charts.yaml
   - grafana-charts.yaml
   - hajimari-charts.yaml
   - harbor-charts.yaml
