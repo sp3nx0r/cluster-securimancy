@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.fairwinds.com/stable/
+      # renovate: registryUrl=https://charts.fairwinds.com/stable
       chart: goldilocks
       version: 4.0.1
       sourceRef:
