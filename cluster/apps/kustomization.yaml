@@ -11,3 +11,4 @@ resources:
   - monitoring
   - networking
   - system-upgrade
+  - uptime-kuma
