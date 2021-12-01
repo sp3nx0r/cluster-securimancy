@@ -5,9 +5,9 @@ resources:
   - cert-manager.yaml
   - falco-system.yaml
   - goldilocks.yaml
-  - harbor.yaml
   - keycloak.yaml
   - media.yaml
   - metallb-system.yaml
   - monitoring.yaml
   - networking.yaml
+  - tools.yaml

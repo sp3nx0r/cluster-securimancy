@@ -4,11 +4,10 @@ resources:
   - default
   - falco-system
   - goldilocks
-  - harbor
   - keycloak
   - kube-system
   # - media
   - monitoring
   - networking
   - system-upgrade
-  - uptime-kuma
+  - tools
