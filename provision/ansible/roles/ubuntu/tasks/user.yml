@@ -14,5 +14,3 @@
     - ssh_authorized_keys is defined
     - ssh_authorized_keys is iterable
     - ssh_authorized_keys | length > 0
-
-# TODO: add kubectl autocompletion

@@ -27,6 +27,7 @@
       - psmisc
       - screen
       - smartmontools
+      - sysstat
       - software-properties-common
       - unattended-upgrades
     install_recommends: false
