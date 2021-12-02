@@ -23,7 +23,7 @@ variable "pvt_key" {
 }
 
 variable "num_k3s_masters" {
- default = 1
+ default = 3
 }
 
 variable "num_k3s_masters_mem" {
@@ -39,5 +39,5 @@ variable "num_k3s_nodes_mem" {
 }
 
 variable "template_vm_name" {
- default = "ubuntu-focal-cloudinit-template"
+ default = "ubuntu-focal-templ"
 }

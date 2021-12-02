@@ -25,7 +25,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
   memory      = var.num_k3s_masters_mem
   cores       = 2
 
-  ipconfig0 = "ip=192.168.5.8${count.index + 1}/24,gw=192.168.5.1"
+  ipconfig0 = "ip=192.168.5.8${count.index}/24,gw=192.168.5.1"
   nameserver = "192.168.5.1"
 }
 
@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_workers" {
   memory      = var.num_k3s_nodes_mem
   cores       = 2
 
-  ipconfig0 = "ip=192.168.5.9${count.index + 1}/24,gw=192.168.5.1"
+  ipconfig0 = "ip=192.168.5.9${count.index}/24,gw=192.168.5.1"
   nameserver = "192.168.5.1"
 }
 
@@ -51,10 +51,10 @@ data "template_file" "k8s" {
   }
 }
 
-resource "local_file" "k8s_file" {
-  content  = data.template_file.k8s.rendered
-  filename = "../inventory/my-cluster/hosts.ini"
-}
+# resource "local_file" "k8s_file" {
+#   content  = data.template_file.k8s.rendered
+#   filename = "../inventory/my-cluster/hosts.ini"
+# }
 
 output "Master-IPS" {
   value = ["${proxmox_vm_qemu.proxmox_vm_master.*.default_ipv4_address}"]
