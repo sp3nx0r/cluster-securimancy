@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# reference blog: https://medium.com/@ssnetanel/build-a-kubernetes-cluster-using-k3s-on-proxmox-via-ansible-and-terraform-c97c7974d4a5
 # reference script: https://gist.github.com/ilude/457f2ef2e59d2bff8bb88b976464bb91
 # This script prepares the cloud-init image used in subsequent terraform steps
 

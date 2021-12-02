@@ -20,5 +20,5 @@
 - name: Remove Proxmox enterprise repo from sources
   ansible.builtin.replace:
     path: /etc/apt/sources.list.d/pve-enterprise.list
-    regexp: '^deb deb .*pve bullseye pve-enterprise$'
+    regexp: '^deb .*pve bullseye pve-enterprise$'
     replace: '# deb https://enterprise.proxmox.com/debian/pve bullseye pve-enterprise'

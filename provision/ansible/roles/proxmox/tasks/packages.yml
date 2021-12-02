@@ -89,3 +89,6 @@
     daemon_reload: true
     enabled: true
     state: restarted
+
+# TODO: install prom exporter for proxmox
+# https://github.com/prometheus-pve/prometheus-pve-exporter

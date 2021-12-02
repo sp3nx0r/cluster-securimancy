@@ -3,7 +3,9 @@
   ansible.builtin.copy:
     dest: /etc/exports
     content: |
-      /storage/share/plex-data 192.168.5.1/24(rw,sync,no_subtree_check,no_root_squash)
+      # SSD storage
+      /storage-fast 192.168.5.1/24(rw,sync,no_subtree_check,no_root_squash)
+      # General storage
       /storage 192.168.5.1/24(rw,sync,no_subtree_check,no_root_squash)
   register: nfs_server_config
 
