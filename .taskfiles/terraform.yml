@@ -3,37 +3,37 @@ version: "3"
 
 tasks:
 
-  init:cloudflare:
+  cloudflare:init:
     desc: Initialize terraform for cloudflare
     dir: provision/terraform/cloudflare
     cmds:
       - "terraform init"
 
-  plan:cloudflare:
+  cloudflare:plan:
     desc: Plan cloudflare terraform changes
     dir: provision/terraform/cloudflare
     cmds:
       - "terraform plan"
 
-  apply:cloudflare:
+  cloudflare:apply:
     desc: Apply terraform for cloudflare
     dir: provision/terraform/cloudflare
     cmds:
       - "terraform apply"
 
-  init:proxmox:
+  proxmox:init:
     desc: Initialize terraform for proxmox
     dir: provision/terraform/proxmox
     cmds:
       - "terraform init"
 
-  plan:proxmox:
+  proxmox:plan:
     desc: Plan proxmox terraform changes
     dir: provision/terraform/proxmox
     cmds:
       - "terraform plan"
 
-  apply:proxmox:
+  proxmox:apply:
     desc: Apply terraform for proxmox
     dir: provision/terraform/proxmox
     cmds:
