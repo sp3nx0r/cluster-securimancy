@@ -8,3 +8,7 @@ creation_rules:
     encrypted_regex: "^(data|stringData)$"
     age: >-
       age1uks2xtgfcjk5cfzv40jm3ar9yl3jzdpea0jcta9zsa00td0r8shqx07umn
+  - path_regex: keeping-this-for-legacy-purposes
+    encrypted_regex: "^(data|stringData)$"
+    gpg: >-
+      E9980CF8F7EFC7C0FD88C4A3FA6A39C8AD70749E
