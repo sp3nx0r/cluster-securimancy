@@ -10,4 +10,4 @@ spec:
       storage: 10Gi
   accessModes:
     - ReadWriteMany
-  storageClassName: "nfs-client"
+  storageClassName: "nfs-client-fast"

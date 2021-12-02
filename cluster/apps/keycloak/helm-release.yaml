@@ -20,7 +20,7 @@ spec:
     global:
       imageRegistry: "harbor.securimancy.com/dockerhub"
       imagePullSecrets: []
-      storageClass: "nfs-client"
+      storageClass: "nfs-client-fast"
 
     ## @section Keycloak parameters
 

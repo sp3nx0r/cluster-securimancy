@@ -82,10 +82,10 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "nfs-client-fast"
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 5Gi
     nodeExporter:
       serviceMonitor:
         relabelings:
@@ -176,10 +176,10 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "nfs-client"
+              storageClassName: "nfs-client-fast"
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 20Gi
         thanos:
           image: quay.io/thanos/thanos:v0.23.1
           version: v0.22.0
