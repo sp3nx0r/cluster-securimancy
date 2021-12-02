@@ -26,6 +26,7 @@
       - nfs-common
       - open-iscsi
       - psmisc
+      - qemu-guest-agent
       - smartmontools
       - software-properties-common
       - unattended-upgrades
