@@ -23,7 +23,7 @@ tasks:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
 
   playbook:proxmox-prepare:
-    descr: Upgrade and prepare Proxmox host
+    desc: Upgrade and prepare Proxmox host
     dir: provision/ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/proxmox.yml {{.ANSIBLE_PLAYBOOK_DIR}}/proxmox-prepare.yml"
@@ -53,7 +53,7 @@ tasks:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-install.yml"
 
   playbook:k3s-nuke:
-    desc: Install Kubernetes on the nodes
+    desc: Remove Kubernetes on all nodes
     dir: provision/ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
