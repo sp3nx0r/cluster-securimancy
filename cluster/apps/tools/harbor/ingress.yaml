@@ -33,7 +33,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: harbor-notary
-  namespace: harbor
+  namespace: tools
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/appName: "traefik"
