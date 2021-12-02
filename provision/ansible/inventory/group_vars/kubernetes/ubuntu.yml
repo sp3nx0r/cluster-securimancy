@@ -2,5 +2,5 @@
 # (string) Timezone for the servers
 timezone: "America/Chicago"
 
-# (list) Additional ssh public keys to add to the nodes
+# (list) Additional ssh public keys to add to the nodes not already provided by cloud-init
 # ssh_authorized_keys:

@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - namespaces
   - cert-manager
-  - democratic-csi
+  # - democratic-csi
   - kube-system
   - metallb-system
   - nfs-subdir-external-provisioner
