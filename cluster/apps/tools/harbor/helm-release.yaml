@@ -178,13 +178,13 @@ spec:
           size: 50Gi
         chartmuseum:
           existingClaim: ""
-          storageClass: nfs-client
+          storageClass: nfs-client-fast
           subPath: "chartmuseum"
           accessMode: ReadWriteMany
           size: 50Gi
         jobservice:
           existingClaim: ""
-          storageClass: nfs-client
+          storageClass: nfs-client-fast
           subPath: "jobservice"
           accessMode: ReadWriteMany
           size: 10Gi
@@ -192,7 +192,7 @@ spec:
         # be ignored
         database:
           existingClaim: ""
-          storageClass: nfs-client
+          storageClass: nfs-client-fast
           subPath: "database"
           accessMode: ReadWriteMany
           size: 10Gi
@@ -200,13 +200,13 @@ spec:
         # be ignored
         redis:
           existingClaim: ""
-          storageClass: nfs-client
+          storageClass: nfs-client-fast
           subPath: "redis"
           accessMode: ReadWriteMany
           size: 10Gi
         trivy:
           existingClaim: ""
-          storageClass: nfs-client
+          storageClass: nfs-client-fast
           subPath: "trivy"
           accessMode: ReadWriteMany
           size: 50Gi
