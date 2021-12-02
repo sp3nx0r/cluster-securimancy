@@ -11,9 +11,10 @@
   tags:
     - filesystem
 
-- include: iommu-passthrough.yml
-  tags:
-    - iommu
+# TODO: Enabling IOMMU breaks networking stack in Proxmox, need to research
+# - include: iommu-passthrough.yml
+#   tags:
+#     - iommu
 
 - include: nfs-server.yml
   tags:
