@@ -115,7 +115,9 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints:
+        - 192.168.5.80
         - 192.168.5.81
+        - 192.168.5.82
       service:
         enabled: true
         port: 10257
@@ -127,15 +129,21 @@ spec:
     kubeScheduler:
       enabled: true
       endpoints:
+        - 192.168.5.80
         - 192.168.5.81
+        - 192.168.5.82
     kubeProxy:
       enabled: true
       endpoints:
+        - 192.168.5.80
         - 192.168.5.81
+        - 192.168.5.82
     kubeEtcd:
       enabled: true
       endpoints:
+        - 192.168.5.80
         - 192.168.5.81
+        - 192.168.5.82
       service:
         enabled: true
         port: 2381
