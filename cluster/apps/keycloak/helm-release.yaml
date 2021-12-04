@@ -455,7 +455,7 @@ spec:
     ## Metrics configuration
     ##
     metrics:
-      enabled: false
+      enabled: true
       service:
         port: 9990
         annotations:
