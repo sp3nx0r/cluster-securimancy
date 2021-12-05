@@ -35,11 +35,8 @@ spec:
                 readOnlyRootFilesystem: true
           volumes:
             - name: cloudflare-ddns
-              projected:
-                defaultMode: 0775
-                sources:
-                  - configMap:
-                      name: cloudflare-ddns
-                      items:
-                        - key: cloudflare-ddns.sh
-                          path: cloudflare-ddns.sh
+              configMap:
+                name: cloudflare-ddns
+                items:
+                - key: cloudflare-ddns.sh
+                  path: cloudflare-ddns.sh
