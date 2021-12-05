@@ -1,0 +1,35 @@
+---
+- name: Create default directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /storage/docker
+    - /storage/docker/apps
+    - /storage/docker/data
+  tags:
+    - always
+
+- include: cadvisor.yml
+  tags:
+    - cadvisor
+
+- include: node-exporter.yml
+  tags:
+    - node-exporter
+
+- include: watchtower.yml
+  tags:
+    - watchtower
+
+- include: promtail.yml
+  tags:
+    - promtail
+
+- include: docker.yml
+  tags:
+    - docker
+
+- include: plex.yml
+  tags:
+    - plex

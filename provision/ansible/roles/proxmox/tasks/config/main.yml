@@ -1,0 +1,25 @@
+---
+- include: apt-sources.yml
+  tags:
+    - apt-sources
+
+- include: packages.yml
+  tags:
+    - packages
+
+- include: filesystem.yml
+  tags:
+    - filesystem
+
+# TODO: Enabling IOMMU breaks networking stack in Proxmox, need to research
+# - include: iommu-passthrough.yml
+#   tags:
+#     - iommu
+
+- include: nfs-server.yml
+  tags:
+    - nfs-server
+
+- include: preferences.yml
+  tags:
+    - preferences

@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     global:
-      imageRegistry: "harbor.securimancy.com/dockerhub"
+      imageRegistry: "harbor.{SECRET_DOMAIN}/dockerhub"
       imagePullSecrets: []
       storageClass: "nfs-client-fast"
 
@@ -403,7 +403,7 @@ spec:
       enabled: true
       ## @param ingress.hostname Default host for the ingress resource
       ##
-      hostname: keycloak.securimancy.com
+      hostname: keycloak.{SECRET_DOMAIN}
       ingressClassName: "traefik"
       path: /
       pathType: Prefix

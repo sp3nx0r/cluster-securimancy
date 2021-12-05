@@ -26,7 +26,7 @@ tasks:
     desc: Upgrade and prepare Proxmox host
     dir: provision/ansible
     cmds:
-      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/proxmox.yml {{.ANSIBLE_PLAYBOOK_DIR}}/proxmox-prepare.yml"
+      - "ansible-playbook --limit proxmox -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/proxmox-prepare.yml"
 
   playbook:ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s

@@ -1,0 +1,29 @@
+---
+version: "3.8"
+
+services:
+
+  plex:
+    image: linuxserver/plex:1.25.0
+    domainname: plex.{{SECRET_DOMAIN}}.com
+    hostname: plexinator
+    security_opt:
+      - no-new-privileges
+    environment:
+      - VERSION=docker
+      - UMASK=022
+      - PUID=1233
+      - PGID=1233
+    volumes:
+      - "{{ apps_dir }}/plex/config:/config"
+      - /storage/plex-data:/data
+    network_mode: host
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:32400/identity"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    container_name: plex
+    restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
