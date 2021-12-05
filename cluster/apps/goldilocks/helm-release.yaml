@@ -34,11 +34,11 @@ spec:
       logVerbosity: "2"
       resources:
         limits:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 50m
+          memory: 105M
         requests:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 50m
+          memory: 105M
 
     dashboard:
       # dashboard.enabled -- If true, the dashboard component will be installed
@@ -64,8 +64,8 @@ spec:
       # dashboard.resources -- A resources block for the dashboard.
       resources:
         limits:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 15m
+          memory: 105M
         requests:
-          cpu: 25m
-          memory: 32Mi
+          cpu: 15m
+          memory: 105M

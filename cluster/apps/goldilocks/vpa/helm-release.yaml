@@ -109,11 +109,11 @@ spec:
       # updater.resources -- The resources block for the updater pod
       resources:
         limits:
-          cpu: 200m
-          memory: 1000Mi
+          cpu: 15m
+          memory: 105M
         requests:
-          cpu: 50m
-          memory: 500Mi
+          cpu: 15m
+          memory: 105M
       nodeSelector: {}
       tolerations: []
       affinity: {}
@@ -159,11 +159,11 @@ spec:
       # admissionController.resources -- The resources block for the admission controller pod
       resources:
         limits:
-          cpu: 200m
-          memory: 500Mi
+          cpu: 15m
+          memory: 250M
         requests:
-          cpu: 50m
-          memory: 200Mi
+          cpu: 15m
+          memory: 105M
       nodeSelector: {}
       tolerations: []
       affinity: {}
