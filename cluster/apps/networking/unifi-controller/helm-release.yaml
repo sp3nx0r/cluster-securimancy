@@ -56,3 +56,10 @@ spec:
       allowPrivilegeEscalation: false
       # TODO: unifi sets JVM config that prevents this setting, look into how to harden
       # readOnlyRootFilesystem: true
+    resources:
+      requests:
+        memory: 1000M
+        cpu: 25m
+      limits:
+        memory: 1250M
+        cpu: 25m

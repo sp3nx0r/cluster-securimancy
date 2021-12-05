@@ -123,10 +123,10 @@ spec:
               topologyKey: kubernetes.io/hostname
     resources:
       requests:
-        memory: 100Mi
+        memory: 477M
         cpu: 100m
       limits:
-        memory: 750Mi
+        memory: 700M
     securityContext:
       allowPrivilegeEscalation: false
       readOnlyRootFilesystem: true
