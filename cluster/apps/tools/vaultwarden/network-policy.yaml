@@ -1,0 +1,27 @@
+# allow to/from traefik
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: vaultwarden
+  namespace: tools
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: vaultwarden
+  ingress:
+  - ports:
+    - port: 80
+    - port: 443
+    from:
+      - namespaceSelector:
+          matchLabels:
+            purpose: networking
+      - podSelector:
+          matchLabels:
+            app: traefik
+  # egress:
+  # - to:
+  #     - podSelector:
+  #         matchLabels:
+  #           app: traefik
