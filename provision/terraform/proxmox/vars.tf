@@ -1,21 +1,14 @@
-variable "username" {
-  description = "The username for the proxmox user"
-  type        = string
-  sensitive = false
-  default = ""
-
-}
-variable "password" {
-  description = "The password for the proxmox user, set with .tfenv"
-  type        = string
-  sensitive = true
-  default = ""
-}
 
 variable "proxmox-host" {
   description = "The IP for proxmox host"
   type        = string
-  default = "192.168.5.10"
+  default     = "192.168.5.10"
+}
+
+variable "nameserver" {
+  description = "The IP for gateway"
+  type        = string
+  default     = "192.168.5.1"
 }
 
 variable "pvt_key" {
@@ -23,21 +16,21 @@ variable "pvt_key" {
 }
 
 variable "num_k3s_masters" {
- default = 3
+  default = 3
 }
 
 variable "num_k3s_masters_mem" {
- default = "4096"
+  default = "4096"
 }
 
 variable "num_k3s_nodes" {
- default = 3
+  default = 3
 }
 
 variable "num_k3s_nodes_mem" {
- default = "4096"
+  default = "6144"
 }
 
 variable "template_vm_name" {
- default = "ubuntu-focal-templ"
+  default = "ubuntu-focal-templ"
 }

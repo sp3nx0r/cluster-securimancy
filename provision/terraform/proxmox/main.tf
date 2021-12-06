@@ -4,13 +4,19 @@ terraform {
       source  = "telmate/proxmox"
       version = ">=2.8.0"
     }
+    sops = {
+      source  = "carlpett/sops"
+      version = "0.6.3"
+    }
   }
 }
-
+data "sops_file" "proxmox_secrets" {
+  source_file = "secret.sops.yaml"
+}
 provider "proxmox" {
   pm_api_url      = "https://${var.proxmox-host}:8006/api2/json"
-  pm_user         = "root@pam"
-  pm_password     = var.password
+  pm_user         = data.sops_file.proxmox_secrets.data["user"]
+  pm_password     = data.sops_file.proxmox_secrets.data["password"]
   pm_tls_insecure = "true"
   pm_parallel     = 10
 }
@@ -25,8 +31,8 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
   memory      = var.num_k3s_masters_mem
   cores       = 2
 
-  ipconfig0 = "ip=192.168.5.8${count.index}/24,gw=192.168.5.1"
-  nameserver = "192.168.5.1"
+  ipconfig0  = "ip=192.168.5.8${count.index}/24,gw=${var.nameserver}"
+  nameserver = var.nameserver
 }
 
 resource "proxmox_vm_qemu" "proxmox_vm_workers" {
@@ -39,8 +45,8 @@ resource "proxmox_vm_qemu" "proxmox_vm_workers" {
   memory      = var.num_k3s_nodes_mem
   cores       = 2
 
-  ipconfig0 = "ip=192.168.5.9${count.index}/24,gw=192.168.5.1"
-  nameserver = "192.168.5.1"
+  ipconfig0  = "ip=192.168.5.9${count.index}/24,gw=${var.nameserver}"
+  nameserver = var.nameserver
 }
 
 data "template_file" "k8s" {
