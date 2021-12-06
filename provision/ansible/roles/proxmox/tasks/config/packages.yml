@@ -13,6 +13,7 @@
 - name: Install common packages
   ansible.builtin.apt:
     name:
+      - apcupsd
       - arptables
       - bash-completion
       - ca-certificates

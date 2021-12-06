@@ -1,0 +1,44 @@
+---
+- name: modify apcupsd.conf
+  ansible.builtin.replace:
+    path: /etc/apcupsd/apcupsd.conf
+    regexp: '^DEVICE(.*)$'
+    replace: 'DEVICE'
+  register: config
+
+- name: Create apcupsd systemd file
+  ansible.builtin.copy:
+    src: "files/apcupsd.service"
+    dest: "/etc/systemd/system/apcupsd.service"
+    mode: 0644
+  register: systemd
+
+- name: load service
+  ansible.builtin.systemd:
+    name: "apcupsd"
+    state: restarted
+    enabled: true
+    daemon_reload: true
+  when: config.changed or systemd.changed
+
+- name: Create apcupsd exporter
+  ansible.builtin.copy:
+    src: "files/apcupsd_exporter"
+    dest: "/sbin/apcupsd_exporter"
+    mode: 0755
+  register: binary
+
+- name: Create apcupsd_exporter systemd file
+  ansible.builtin.copy:
+    src: "files/apcupsd_exporter.service"
+    dest: "/etc/systemd/system/apcupsd_exporter.service"
+    mode: 0644
+  register: systemd
+
+- name: load service
+  ansible.builtin.systemd:
+    name: "apcupsd_exporter"
+    state: restarted
+    enabled: true
+    daemon_reload: true
+  when: binary.changed or systemd.changed

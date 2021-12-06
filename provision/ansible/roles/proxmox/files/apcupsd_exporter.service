@@ -1,0 +1,8 @@
+[Unit]
+Description=APC UPS Power Prometheus Exporter
+
+[Service]
+ExecStart=/sbin/apcupsd_exporter
+
+[Install]
+WantedBy=multi-user.target
