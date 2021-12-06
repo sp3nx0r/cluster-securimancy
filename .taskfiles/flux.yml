@@ -15,3 +15,9 @@ tasks:
       - cat ~/.config/sops/age/keys.txt | kubectl --kubeconfig=./provision/kubeconfig -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
       - kubectl apply -k ./cluster/base/flux-system
       - kubectl apply -k ./cluster/base/flux-system
+
+  taints:
+    desc: Apply labels and taints
+    cmds:
+      - for i in {0..2}; do kubectl label nodes k3s-worker-$i node-role.kubernetes.io/worker=true; done
+      - for i in {0..2}; do kubectl taint nodes k3s-master-$i node-role.kubernetes.io/master=:NoSchedule; done
