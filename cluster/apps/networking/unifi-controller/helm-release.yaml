@@ -23,7 +23,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: ${SVC_UNIFI_CONTROLLER}
+        externalIPs: ${SVC_UNIFI_CONTROLLER}
         ports:
           speedtest:
             enabled: false
