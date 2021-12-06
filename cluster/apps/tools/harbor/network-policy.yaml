@@ -1,0 +1,27 @@
+# allow to/from traefik
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: harbor
+  namespace: tools
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: harbor
+  ingress:
+  - ports:
+    - port: 80
+    - port: 4443
+    from:
+      - namespaceSelector:
+          matchLabels:
+            purpose: networking
+      - podSelector:
+          matchLabels:
+            app: traefik
+  # egress:
+  # - to:
+  #     - podSelector:
+  #         matchLabels:
+  #           app: traefik
