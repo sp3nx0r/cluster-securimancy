@@ -11,3 +11,4 @@ resources:
   - monitoring.yaml
   - networking.yaml
   - tools.yaml
+  - tor.yaml

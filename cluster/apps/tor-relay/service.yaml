@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tor-relay
+  namespace: tor
+spec:
+  loadBalancerIP: ${SVC_TOR_RELAY}
+  ports:
+  - name: pt-port-tcp
+    port: 58283
+    protocol: TCP
+  - name: pt-port-udp
+    port: 58283
+    protocol: UDP
+  - name: ot-port
+    port: 45532
+    protocol: TCP
+  - name: ot-port-udp
+    port: 45532
+    protocol: UDP
+  selector:
+    app.kubernetes.io/instance: tor-relay
+    app.kubernetes.io/name: tor-relay
+  type: LoadBalancer

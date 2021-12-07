@@ -1,0 +1,42 @@
+# default deny except DNS
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny-all-egress
+  namespace: tor
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          networking/namespace: kube-system
+      podSelector: {}
+    ports:
+      - protocol: TCP
+        port: 53
+      - protocol: UDP
+        port: 53
+
+# permit only egress to external internet
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: internet-egress-only
+  namespace: tor
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+        - 192.168.0.0/16
+        - 10.0.0.0/8
+        - 172.16.0.0/12

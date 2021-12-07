@@ -11,3 +11,4 @@ resources:
   - networking
   - system-upgrade
   - tools
+  - tor-relay
