@@ -2,19 +2,18 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - bazarr
+  - bazarr
+  # TODO: finish setup for this
   # - doplarr
-  # - jellyfin
-  # - lidarr
-  # - overseerr
-  - plex
-  # - prowlarr
-  # - qbittorrent
-  # - qbittorrent-vpn
-  # - radarr
-  # - radarr-uhd
-  # - readarr
-  # - sabnzbd
-  # - sonarr
-  # - sonarr-uhd
+  - overseerr
+  # TODO: Currently available in docker-compose, move it back?
+  # - plex
+  - prowlarr
+  - qbittorrent
+  - radarr
+  - radarr-uhd
+  - readarr
+  - sabnzbd
+  - sonarr
+  - sonarr-uhd
   - tautulli
