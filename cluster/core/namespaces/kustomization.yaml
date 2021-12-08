@@ -6,6 +6,7 @@ resources:
   - falco-system.yaml
   - goldilocks.yaml
   - keycloak.yaml
+  - kube-system.yaml
   - media.yaml
   - metallb-system.yaml
   - monitoring.yaml
