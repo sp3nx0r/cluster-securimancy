@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/0xerr0r/blocky
-      tag: v0.16
+      tag: v0.17
     controller:
       enabled: true
       type: deployment
@@ -59,7 +59,6 @@ spec:
       upstream:
         default:
           - tcp+udp:${GATEWAY_ADDR}
-          - tcp+udp:$
       conditional:
         mapping:
           ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
