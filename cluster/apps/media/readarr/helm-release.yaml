@@ -41,8 +41,8 @@ spec:
               - "readarr.${SECRET_DOMAIN}"
             secretName: "readarr-tls"
     podSecurityContext:
-      supplementalGroups:
-        - 100
+      runAsUser: 1001
+      fsGroup: 1001
     persistence:
       config:
         enabled: true
@@ -55,9 +55,9 @@ spec:
             server: "${NAS_ADDR}"
             path: /storage/plex-data/Media
         mountPath: /media
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 100m
-      limits:
-        memory: 750Mi
+    # resources:
+    #   requests:
+    #     memory: 100Mi
+    #     cpu: 100m
+    #   limits:
+    #     memory: 750Mi

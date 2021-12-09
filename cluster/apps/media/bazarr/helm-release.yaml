@@ -41,8 +41,8 @@ spec:
               - "bazarr.${SECRET_DOMAIN}"
             secretName: "bazarr-tls"
     podSecurityContext:
-      supplementalGroups:
-        - 100
+      runAsUser: 1001
+      fsGroup: 1001
     persistence:
       config:
         enabled: true
@@ -55,9 +55,9 @@ spec:
             server: "${NAS_ADDR}"
             path: /storage/plex-data/Media
         mountPath: /media
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 500m
-      limits:
-        memory: 1500Mi
+    # resources:
+    #   requests:
+    #     memory: 250Mi
+    #     cpu: 500m
+    #   limits:
+    #     memory: 1500Mi
