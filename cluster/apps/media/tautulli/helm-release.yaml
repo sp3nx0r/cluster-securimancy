@@ -27,8 +27,9 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          # external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-bar"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -40,6 +41,7 @@ spec:
         tls:
           - hosts:
               - "tautulli.${SECRET_DOMAIN}"
+            secretName: tautulli-tls
     persistence:
       config:
         enabled: true

@@ -27,6 +27,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-search"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -38,6 +39,7 @@ spec:
         tls:
           - hosts:
               - "prowlarr.${SECRET_DOMAIN}"
+            secretName: prowlarr-tls
     persistence:
       config:
         enabled: true
