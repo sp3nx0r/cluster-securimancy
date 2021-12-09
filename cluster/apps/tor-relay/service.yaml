@@ -4,19 +4,16 @@ metadata:
   name: tor-relay
   namespace: tor
 spec:
-  loadBalancerIP: ${SVC_TOR_RELAY}
   ports:
   - name: pt-port-tcp
     port: 30913
-    targetPort: 30913
     nodePort: 30913
     protocol: TCP
   - name: or-port
     port: 30932
-    targetPort: 30932
     nodePort: 30932
     protocol: TCP
   selector:
     app.kubernetes.io/instance: tor-relay
     app.kubernetes.io/name: tor-relay
-  type: LoadBalancer
+  type: NodePort
