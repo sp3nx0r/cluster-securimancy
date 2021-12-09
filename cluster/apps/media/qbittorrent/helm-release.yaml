@@ -107,8 +107,8 @@ spec:
             ${VYPRVPN_USER}
             ${VYPRVPN_PASSWORD}
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
+        runAsUser: 0
+        runAsGroup: 0
       env:
         FIREWALL: "true"
       configFile: |-
