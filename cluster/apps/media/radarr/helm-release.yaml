@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: radarr
-      version: 15.0.3
+      version: 15.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -27,6 +27,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "filmstrip"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -40,8 +41,8 @@ spec:
               - "radarr.${SECRET_DOMAIN}"
             secretName: "radarr-tls"
     podSecurityContext:
-      supplementalGroups:
-        - 100
+      runAsUser: 1001
+      fsGroup: 1001
     metrics:
       enabled: true
       serviceMonitor:
@@ -52,7 +53,7 @@ spec:
       exporter:
         image:
           repository: ghcr.io/onedr0p/exportarr
-          tag: v0.6.1
+          tag: v0.6.2
         env:
           port: 9794
           additionalMetrics: true
@@ -69,9 +70,9 @@ spec:
             server: "${NAS_ADDR}"
             path: /storage/plex-data/Media
         mountPath: /media
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 500m
-      limits:
-        memory: 1500Mi
+    # resources:
+    #   requests:
+    #     memory: 250Mi
+    #     cpu: 500m
+    #   limits:
+    #     memory: 1500Mi

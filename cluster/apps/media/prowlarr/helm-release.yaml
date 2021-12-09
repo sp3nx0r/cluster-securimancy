@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: prowlarr
-      version: 4.0.1
+      version: 4.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -27,6 +27,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-search"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -38,13 +39,14 @@ spec:
         tls:
           - hosts:
               - "prowlarr.${SECRET_DOMAIN}"
+            secretName: prowlarr-tls
     persistence:
       config:
         enabled: true
         existingClaim: prowlarr-config-v1
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 100m
-      limits:
-        memory: 500Mi
+    # resources:
+    #   requests:
+    #     memory: 100Mi
+    #     cpu: 100m
+    #   limits:
+    #     memory: 500Mi

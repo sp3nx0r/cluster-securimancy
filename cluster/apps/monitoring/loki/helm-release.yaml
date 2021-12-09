@@ -108,6 +108,20 @@ spec:
               category: logs
             annotations:
               summary: "Vaultwarden is unable to connect to postgresql"
+      #
+      # tor-relay
+      #
+      - name: torrelay
+        rules:
+          - alert: TorRelayUnreachable
+            expr: |
+              sum by (app) (count_over_time({app="tor-relay"} |~ "(?i)Your server has not managed to confirm reachability"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "Tor relay is not able to confirm it's reachable externally"
   # TODO: https://github.com/grafana/helm-charts/pull/700
   postRenderers:
     - kustomize:

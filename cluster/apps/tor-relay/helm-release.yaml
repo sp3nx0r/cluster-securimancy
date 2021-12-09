@@ -28,8 +28,8 @@ spec:
         retain: true
     env:
       EMAIL: ${SECRET_CLOUDFLARE_EMAIL}
-      OR_PORT: 45532
-      PT_PORT: 58283
+      OR_PORT: 30932
+      PT_PORT: 30913
     service:
       main:
         enabled: false
@@ -54,3 +54,5 @@ spec:
           mountPath: /var/lib/tor
         securityContext:
           runAsUser: 0
+    nodeSelector:
+      kubernetes.io/hostname: k3s-worker-1

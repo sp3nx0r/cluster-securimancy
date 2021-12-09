@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: tautulli
-      version: 11.0.1
+      version: 11.1.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -27,8 +27,9 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          # external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-bar"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
@@ -40,16 +41,17 @@ spec:
         tls:
           - hosts:
               - "tautulli.${SECRET_DOMAIN}"
+            secretName: tautulli-tls
     persistence:
       config:
         enabled: true
         existingClaim: tautulli-config-v1
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 500m
-      limits:
-        memory: 750Mi
+    # resources:
+    #   requests:
+    #     memory: 250Mi
+    #     cpu: 500m
+    #   limits:
+    #     memory: 750Mi
     securityContext:
       allowPrivilegeEscalation: false
       readOnlyRootFilesystem: true
