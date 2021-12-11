@@ -23,24 +23,7 @@
 
 - name: Install common packages
   ansible.builtin.apt:
-    name:
-      - apt-transport-https
-      - arptables
-      - bash-completion
-      - ca-certificates
-      - curl
-      - ebtables
-      - iputils-ping
-      - ipvsadm
-      - lvm2
-      - net-tools
-      - nfs-common
-      - open-iscsi
-      - psmisc
-      - qemu-guest-agent
-      - smartmontools
-      - software-properties-common
-      - unattended-upgrades
+    name: "{{ apt_install_packages }} "
     install_recommends: false
     update_cache: true
     cache_valid_time: 3600
@@ -49,6 +32,10 @@
   register: apt_install_common
   retries: 5
   until: apt_install_common is success
+  when:
+    - apt_install_packages is defined
+    - apt_install_packages is iterable
+    - apt_install_packages | length > 0
 
 - name: Gather installed packages
   ansible.builtin.package_facts:

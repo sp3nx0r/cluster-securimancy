@@ -2,3 +2,7 @@
 ---
 apps_dir: /storage/docker/apps
 data_dir: /storage/docker/data
+backup_cronjob_intervals:
+  - "daily"
+  - "weekly"
+  - "monthly"

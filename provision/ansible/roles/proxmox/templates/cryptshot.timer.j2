@@ -1,0 +1,11 @@
+[Unit]
+Description=cryptshot {{ item.interval }} backup
+
+[Timer]
+# Run cryptshot {{ item.interval }}
+OnCalendar={{ item.oncalendar }}
+Persistent=true
+Unit=cryptshot@{{ item.interval }}.service
+
+[Install]
+WantedBy=timers.target

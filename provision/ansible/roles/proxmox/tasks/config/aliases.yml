@@ -1,0 +1,9 @@
+# TODO: Add additional aliases
+---
+- name: Add aliases
+  ansible.builtin.blockinfile:
+    path: /etc/profile.d/00-aliases.sh
+    create: true
+    mode: 0644
+    block: |
+      alias ..='cd ..'

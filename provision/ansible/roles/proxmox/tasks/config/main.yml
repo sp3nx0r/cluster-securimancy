@@ -27,3 +27,11 @@
 - include: ups.yaml
   tags:
     - ups
+
+- include: aliases.yml
+  tags:
+    - aliases
+
+- include: backup.yml
+  tags:
+    - backup

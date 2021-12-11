@@ -1,0 +1,8 @@
+[Unit]
+Description=cryptshot (%I) backup
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=idle
+ExecStart=/usr/bin/cryptshot %I

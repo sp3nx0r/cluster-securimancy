@@ -5,7 +5,7 @@ services:
 
   plex:
     image: linuxserver/plex:1.25.1
-    domainname: plex.{{SECRET_DOMAIN}}.com
+    domainname: plex.{{SECRET_DOMAIN}}
     hostname: plexinator
     security_opt:
       - no-new-privileges
