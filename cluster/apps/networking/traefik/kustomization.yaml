@@ -3,6 +3,9 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - dashboard
+  - default-tls.yaml
   - middlewares
+  - prometheus-rule.yaml
   - proxmox
   - router
+  - service-monitor.yaml

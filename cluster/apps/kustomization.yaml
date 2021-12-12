@@ -2,7 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - default
-  - falco-system
+  # TODO: temp disable until we get resourcing under control, MAN it eats the RAM
+  # - falco-system
+  - flux-system-addons
   - goldilocks
   - keycloak
   - kube-system
@@ -11,4 +13,5 @@ resources:
   - networking
   - system-upgrade
   - tools
-  - tor-relay
+  # TODO: figure out port forwarding issue preventing this running on k8s
+  # - tor-relay

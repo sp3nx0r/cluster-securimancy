@@ -5,7 +5,6 @@ metadata:
   name: router
   namespace: networking
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
     hajimari.io/appName: "untangle"
     hajimari.io/enable: "true"
     hajimari.io/icon: "fire"
