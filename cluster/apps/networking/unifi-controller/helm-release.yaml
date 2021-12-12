@@ -17,9 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # manually pin image tag until chart gets updated (currently on 6.2.x)
-    image:
-      tag: "v6.5.53"
+    # image:
+    #   tag: "v6.5.53"
     service:
       main:
         type: LoadBalancer
