@@ -10,16 +10,15 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: unifi
-      version: 4.4.0
+      version: 4.5.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
   values:
-    # manually pin image tag until chart gets updated (currently on 6.2.x)
-    image:
-      tag: "v6.5.53"
+    # image:
+    #   tag: "v6.5.53"
     service:
       main:
         type: LoadBalancer
