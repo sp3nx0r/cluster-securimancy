@@ -86,3 +86,12 @@ spec:
       limits:
         memory: 500Mi
         cpu: 100m
+
+    # wildcard cert config
+    volumes:
+      - name: wildcard-cert
+        mountPath: /ssl
+    additionalVolumeMounts:
+      - name: wildcard-cert
+        secret:
+          secretName: ${SECRET_DOMAIN}-tls

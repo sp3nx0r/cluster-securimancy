@@ -15,7 +15,6 @@ spec:
   tls:
     - hosts:
         - "untangle.${SECRET_DOMAIN}"
-      secretName: "untangle-tls"
   rules:
     - host: "untangle.${SECRET_DOMAIN}"
       http:
