@@ -156,14 +156,12 @@ spec:
       annotations:
         hajimari.io/enable: "true"
         hajimari.io/icon: "weather-sunset"
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       hosts:
         - "grafana.${SECRET_DOMAIN}"
       tls:
         - hosts:
             - "grafana.${SECRET_DOMAIN}"
-          secretName: "grafana-tls"
     serviceAccount:
       create: true
       autoMount: true

@@ -47,7 +47,6 @@ spec:
         ingressClassName: "traefik"
         annotations:
           # TODO: Add hajimari annotations to minio ingress
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - host: "minio.${SECRET_DOMAIN}"
@@ -66,7 +65,6 @@ spec:
           - hosts:
               - "minio.${SECRET_DOMAIN}"
               - "s3.${SECRET_DOMAIN}"
-            secretName: "minio-tls"
     persistence:
       config:
         enabled: true
