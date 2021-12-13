@@ -172,6 +172,8 @@ spec:
       thanosServiceMonitor:
         enabled: true
       prometheusSpec:
+        nodeSelector:
+          kubernetes.io/hostname: k3s-worker-2
         replicas: 1
         replicaExternalLabelName: "replica"
         ruleSelectorNilUsesHelmValues: false
