@@ -109,7 +109,8 @@ if [ "$MOUNTROOT" = "" ]; then
 fi
 
 # Create the mount point from the mount root and UUID.
-MOUNTPOINT="$MOUNTROOT$UUID"
+# MOUNTPOINT="$MOUNTROOT$UUID"
+MOUNTPOINT="$MOUNTROOT"
 
 # If the mount point does not exist, create it.
 if [ ! -d "$MOUNTPOINT" ]; then

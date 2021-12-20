@@ -7,8 +7,6 @@
     - /storage/docker
     - /storage/docker/apps
     - /storage/docker/data
-  tags:
-    - always
 
 - include: cadvisor.yml
   tags:

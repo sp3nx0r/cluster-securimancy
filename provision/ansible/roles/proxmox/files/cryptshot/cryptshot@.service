@@ -5,4 +5,4 @@ Description=cryptshot (%I) backup
 Type=oneshot
 Nice=19
 IOSchedulingClass=idle
-ExecStart=/usr/bin/cryptshot %I
+ExecStart=/usr/bin/cryptshot -i %I
