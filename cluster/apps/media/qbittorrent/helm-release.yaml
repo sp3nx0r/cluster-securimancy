@@ -48,6 +48,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
         hosts:
           - host: "qb.${SECRET_DOMAIN}"
             paths:
@@ -119,6 +120,8 @@ spec:
           remote us3.vyprvpn.com 443
           resolv-retry infinite
           nobind
+          persist-key
+          persist-tun
           persist-remote-ip
           verify-x509-name us3.vyprvpn.com name
           auth-user-pass

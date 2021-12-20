@@ -48,6 +48,7 @@ spec:
         annotations:
           # TODO: Add hajimari annotations to minio ingress
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
         hosts:
           - host: "minio.${SECRET_DOMAIN}"
             paths:

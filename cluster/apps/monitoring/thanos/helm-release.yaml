@@ -33,6 +33,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
         tls: true
     existingObjstoreSecret: thanos-objstore
     queryFrontend:

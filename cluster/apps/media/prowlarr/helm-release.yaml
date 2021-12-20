@@ -31,6 +31,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-search"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
         hosts:
           - host: "prowlarr.${SECRET_DOMAIN}"
             paths:

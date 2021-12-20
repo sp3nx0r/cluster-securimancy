@@ -6,6 +6,5 @@ resources:
   # - cloudflare-ddns
   - external-dns
   - traefik
-  - traefik-public
   - unifi-controller
   - wildcard-certificate

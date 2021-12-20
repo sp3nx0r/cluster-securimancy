@@ -24,6 +24,7 @@ spec:
       path: /
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
       hosts:
         - "pushgateway.${SECRET_DOMAIN}"
       tls:
