@@ -6,7 +6,6 @@ resources:
   # - falco-system
   - flux-system-addons
   - goldilocks
-  - keycloak
   - kube-system
   - media
   - monitoring
