@@ -26,8 +26,8 @@ spec:
       enabled: true
       ingressClassName: "traefik"
       annotations:
-        # external-dns/is-public: "true"
-        # external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
+        external-dns/is-public: "true"
+        external-dns.alpha.kubernetes.io/target: ipv4.${SECRET_DOMAIN}
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
       hosts:
         - host: authentik.${SECRET_DOMAIN}
@@ -105,6 +105,24 @@ spec:
       #       memory: 32Mi
       #     limits:
       #       memory: 64Mi
+
+    prometheus:
+      serviceMonitor:
+        create: true
+        interval: 30s
+        scrapeTimeout: 3s
+      rules:
+        create: true
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k3s-worker-1
 
   valuesFrom:
     - kind: Secret
