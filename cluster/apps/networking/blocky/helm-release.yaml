@@ -55,6 +55,10 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
+    queryLog:
+      dir: /app/logs
+      type: csv
+      logRetentionDays: 14
     config: |
       upstream:
         default:
