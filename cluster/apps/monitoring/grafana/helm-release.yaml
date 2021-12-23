@@ -76,22 +76,16 @@ spec:
             access: proxy
             url: http://thanos-query:9090/
             isDefault: true
-          # TODO: Add back for Loki when ready
-          # - name: Loki
-          #   type: loki
-          #   access: proxy
-          #   url: http://loki:3100
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki:3100
     dashboards:
       default:
-        # # Ref: https://grafana.com/grafana/dashboards/12175
+        # Ref: https://grafana.com/grafana/dashboards/12175
         calico-felix:
           gnetId: 12175
           revision: 5
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/7845
-        zfs:
-          gnetId: 7845
-          revision: 4
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13502
         minio:
@@ -122,12 +116,6 @@ spec:
         speedtest:
           gnetId: 13665
           revision: 1
-          datasource: Prometheus
-        flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
-          datasource: Prometheus
-        flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/10347
         proxmox:
