@@ -109,20 +109,7 @@ spec:
               category: logs
             annotations:
               summary: "Vaultwarden is unable to connect to postgresql"
-      #
-      # tor-relay
-      #
-      - name: torrelay
-        rules:
-          - alert: TorRelayUnreachable
-            expr: |
-              sum by (app) (count_over_time({app="tor-relay"} |~ "(?i)Your server has not managed to confirm reachability"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "Tor relay is not able to confirm it's reachable externally"
+
   # TODO: https://github.com/grafana/helm-charts/pull/700
   postRenderers:
     - kustomize:
@@ -132,19 +119,23 @@ spec:
               kind: Ingress
               name: loki
             patch:
-              - op: replace
-                path: /apiVersion
-                value: networking.k8s.io/v1
-              - op: remove
-                path: /spec/rules/0/http/paths/0/backend/servicePort
-              - op: remove
-                path: /spec/rules/0/http/paths/0/backend/serviceName
               - op: add
-                path: /spec/rules/0/http/paths/0/backend/service
-                value:
-                  name: loki
-                  port:
-                    name: http-metrics
-              - op: add
-                path: /spec/rules/0/http/paths/0/pathType
-                value: Prefix
+                path: /spec/ingressClassName
+                value: "traefik"
+  #           patch:
+  #             - op: replace
+  #               path: /apiVersion
+  #               value: networking.k8s.io/v1
+  #             - op: remove
+  #               path: /spec/rules/0/http/paths/0/backend/servicePort
+  #             - op: remove
+  #               path: /spec/rules/0/http/paths/0/backend/serviceName
+  #             - op: add
+  #               path: /spec/rules/0/http/paths/0/backend/service
+  #               value:
+  #                 name: loki
+  #                 port:
+  #                   name: http-metrics
+  #             - op: add
+  #               path: /spec/rules/0/http/paths/0/pathType
+  #               value: Prefix
