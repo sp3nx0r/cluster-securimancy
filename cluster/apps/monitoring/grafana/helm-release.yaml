@@ -136,6 +136,7 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+      - marcusolsson-csv-datasource
     serviceMonitor:
       enabled: true
     ingress:
