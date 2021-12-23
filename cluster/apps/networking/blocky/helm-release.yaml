@@ -55,10 +55,6 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
-    queryLog:
-      dir: /app/logs
-      type: csv
-      logRetentionDays: 14
     config: |
       upstream:
         default:
@@ -101,6 +97,10 @@ spec:
       logFormat: json
       logLevel: info
       disableIPv6: true
+      queryLog:
+        dir: /app/logs
+        type: csv
+        logRetentionDays: 14
     persistence:
       whitelists:
         enabled: true
@@ -109,6 +109,12 @@ spec:
         volumeSpec:
           configMap:
             name: blocky-whitelist
+      logs:
+        enabled: true
+        mountPath: /app/logs
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 25G
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blocky-config"
     affinity:
