@@ -9,7 +9,8 @@ resources:
   # TODO: Currently available in docker-compose, move it back?
   # - plex
   - prowlarr
-  - qbittorrent
+  # TODO: finish vpn wrapping
+  # - qbittorrent
   - radarr
   - readarr
   - sabnzbd
