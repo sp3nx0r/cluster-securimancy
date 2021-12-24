@@ -12,11 +12,11 @@ spec:
   ingress:
   - ports:
     - port: 80
-    - port: 443
+    - port: 3012
     from:
       - namespaceSelector:
           matchLabels:
-            purpose: networking
+            name: networking
       - podSelector:
           matchLabels:
             app: traefik
