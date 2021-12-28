@@ -10,7 +10,8 @@ resources:
   # - plex
   - prowlarr
   # TODO: finish vpn wrapping
-  # - qbittorrent
+  # - qbittorrent-vpn
+  - qbittorrent
   - radarr
   - readarr
   - sabnzbd
