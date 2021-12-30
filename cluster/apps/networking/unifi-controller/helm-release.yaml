@@ -17,8 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # image:
-    #   tag: "v6.5.53"
+    image:
+      tag: "v6.5.55"
     service:
       main:
         type: LoadBalancer
