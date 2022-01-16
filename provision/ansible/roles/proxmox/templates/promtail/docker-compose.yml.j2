@@ -13,5 +13,3 @@ services:
       - "{{ apps_dir }}/promtail/promtail.yaml:/etc/promtail/promtail.yaml:ro"
       - /var/log:/var/log:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
