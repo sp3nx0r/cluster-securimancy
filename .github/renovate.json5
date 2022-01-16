@@ -1,10 +1,16 @@
 {
-  "enabled": true,
+  "extends": [
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "docker:enableMajor",
+    ":enablePreCommit",
+  ],
   "timezone": "America/Chicago",
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "commitBody": "Signed-off-by: sp3nx0r <sp3nx0r@users.noreply.github.com>",
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   "commitMessageTopic": "{{depName}}",
@@ -13,76 +19,67 @@
   // set up Renovate Managers
   "docker-compose": {
     "fileMatch": [
-      "(^|\/)docker-compose.*\.ya?ml$",
-      "(^|\/)docker-compose.*\.ya?ml\.j2$"
-    ]
+      "(^|/)docker-compose.*.ya?ml$",
+      "(^|/)docker-compose.*.ya?ml.j2$",
+    ],
   },
   "helm-values": {
-    "fileMatch": ["cluster/.+/helm-release\\.yaml$"]
+    "fileMatch": ["cluster/.+/helm-release\\.yaml$"],
   },
   "helmv3": {
-    "fileMatch": ["charts/.+/Chart\\.yaml$"]
+    "fileMatch": ["charts/.+/Chart\\.yaml$"],
   },
   "kubernetes": {
-    "fileMatch": [
-      "cluster/.+\\.yaml$"
-    ],
-    "ignorePaths": [
-      "cluster/base/"
-    ]
+    "fileMatch": ["cluster/.+\\.yaml$"],
+    "ignorePaths": ["cluster/base/"],
   },
+  // "flux": {
+  //   "fileMatch": [
+  //     "cluster/.+\\.yaml$"
+  //   ]
+  // },
   "regexManagers": [
-    // regexManager to read and process HelmRelease files
+    // regexManager to read and process Flux HelmReleases
     {
-      "fileMatch": [
-        "cluster/.+\\.yaml$"
-      ],
+      "fileMatch": ["cluster/.+\\.yaml$"],
       "matchStrings": [
         // helm releases
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
       ],
-      "datasourceTemplate": "helm"
+      "datasourceTemplate": "helm",
     },
     // regexManager to read and process cert-manager CRD's
     {
-      "fileMatch": [
-        "cluster/crds/cert-manager/.+\\.yaml$"
-      ],
+      "fileMatch": ["cluster/crds/cert-manager/.+\\.yaml$"],
       "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
       ],
-      "datasourceTemplate": "helm"
+      "datasourceTemplate": "helm",
     },
     // regexManager to read and process kube-prometheus-stack
     {
-      "fileMatch": [
-        "cluster/crds/kube-prometheus-stack/.+\\.yaml$"
-      ],
+      "fileMatch": ["cluster/crds/kube-prometheus-stack/.+\\.yaml$"],
       "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
+        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
       ],
-      "datasourceTemplate": "helm"
+      "datasourceTemplate": "helm",
     },
     // regexManager to read and process Traefik CRD's
     {
-      "fileMatch": [
-        "cluster/crds/traefik/.+\\.yaml$"
-      ],
+      "fileMatch": ["cluster/crds/traefik/.+\\.yaml$"],
       "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
       ],
-      "datasourceTemplate": "helm"
+      "datasourceTemplate": "helm",
     },
-    // regexManager to read and process External Snapshotter and External DNS CRD's
+    // regexManager to read and process External DNS CRD's
     {
-      "fileMatch": [
-        "cluster/crds/external-dns/.+\\.yaml$"
-      ],
+      "fileMatch": ["cluster/crds/external-dns/.+\\.yaml$"],
       "matchStrings": [
-        "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n"
+        "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
       ],
-      "datasourceTemplate": "github-releases"
-    }
+      "datasourceTemplate": "github-releases",
+    },
   ],
   "packageRules": [
     // setup datasources
@@ -90,74 +87,72 @@
       "matchDatasources": ["helm"],
       "semanticCommitScope": "charts",
       "separateMinorPatch": true,
-      "ignoreDeprecated": true
+      "ignoreDeprecated": true,
     },
     // global docker datasource settings
     {
       "matchDatasources": ["docker"],
       "enabled": true,
-      "matchUpdateTypes": ["major", "minor", "patch"]
+      "matchUpdateTypes": ["major", "minor", "patch"],
     },
     {
       "matchDatasources": ["docker"],
       "semanticCommitScope": "images",
-      "separateMinorPatch": true
+      "separateMinorPatch": true,
     },
     // add labels according to package and update types
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "feat(images)!: ",
-      "labels": ["renovate/image", "dep/major"]
+      "labels": ["renovate/image", "dep/major"],
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
       "semanticCommitType": "feat",
-      "labels": ["renovate/image", "dep/minor"]
+      "labels": ["renovate/image", "dep/minor"],
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
-      "labels": ["renovate/image", "dep/patch"]
+      "labels": ["renovate/image", "dep/patch"],
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "feat(charts)!: ",
-      "labels": ["renovate/helm", "dep/major"]
+      "labels": ["renovate/helm", "dep/major"],
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
       "semanticCommitType": "feat",
-      "labels": ["renovate/helm", "dep/minor"]
+      "labels": ["renovate/helm", "dep/minor"],
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
-      "labels": ["renovate/helm", "dep/patch"]
+      "labels": ["renovate/helm", "dep/patch"],
     },
     // custom version schemes
     {
       "matchDatasources": ["docker"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-      "matchPackageNames": ["blakeblackshear/frigate"]
+      "matchPackageNames": ["blakeblackshear/frigate"],
     },
     {
       "matchDatasources": ["docker"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
-      "matchPackageNames": ["quay.io/minio/minio"]
+      "matchPackageNames": ["quay.io/minio/minio"],
     },
     // pin package versions
     {
       "matchDatasources": ["docker"],
       "allowedVersions": "<13",
-      "matchPackageNames": [
-        "docker.io/library/postgres"
-      ]
+      "matchPackageNames": ["docker.io/library/postgres"],
     },
     // version strategies
     {
@@ -165,8 +160,8 @@
       "versioning": "loose",
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/qbittorrent"
-      ]
+        "ghcr.io/k8s-at-home/qbittorrent",
+      ],
     },
     // enable auto-merge
     {
@@ -177,8 +172,12 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/jackett",
-        "ghcr.io/k8s-at-home/prowlarr-nightly"
-     ]
+        "ghcr.io/k8s-at-home/prowlarr-nightly",
+        "ghcr.io/k8s-at-home/readarr-nightly",
+        "linuxserver/plex",
+        "quay.io/minio/minio",
+        "ghcr.io/k8s-at-home/plex",
+      ],
     },
     // group packages
     {
@@ -186,7 +185,7 @@
       "matchPackagePatterns": ["rancher/system-upgrade-controller"],
       "groupName": "system-upgrade-controller-suite",
       "additionalBranchPrefix": "",
-      "separateMinorPatch": true
-    }
-  ]
+      "separateMinorPatch": true,
+    },
+  ],
 }
