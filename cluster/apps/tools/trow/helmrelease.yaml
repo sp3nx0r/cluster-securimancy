@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     trow:
-      domain: ${SECRET_DOMAIN}
+      domain: trow.${SECRET_DOMAIN}
       # user: user
       # password: password
       validation:
