@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: trow-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://trow.io/
+  timeout: 3m
