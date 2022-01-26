@@ -1,1 +1,2 @@
 www.${SECRET_DOMAIN}
+ads.reddit.com
