@@ -1,0 +1,72 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: trow
+  namespace: tools
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://trow.io/
+      chart: trow
+      version: 0.3.4
+      sourceRef:
+        kind: HelmRepository
+        name: trow-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    trow:
+      domain: trow.${SECRET_DOMAIN}
+      # user: user
+      # password: password
+      validation:
+        enabled: true
+        allowDocker: false
+        allowKubernetes: true
+        allowPrefixes:
+          - "harbor.${SECRET_DOMAIN}"
+        allowImages: []
+        disallowLocalPrefixes: []
+        disallowLocalImages: []
+        proxyDockerHub: true
+
+    service:
+      type: ClusterIP
+      port: 8000
+
+    ingress:
+      enabled: true
+      ingressClassName: "traefik"
+      annotations: 
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+      hosts:
+        - paths: ['/']
+          host: trow.${SECRET_DOMAIN}
+      tls:
+        - hosts:
+           - trow.${SECRET_DOMAIN}
+      
+    resources: {}
+      # We usually recommend not to specify default resources and to leave this as a conscious
+      # choice for the user. This also increases chances charts run on environments with little
+      # resources, such as Minikube. If you do want to specify resources, uncomment the following
+      # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+      # limits:
+      #   cpu: 100m
+      #   memory: 128Mi
+      # requests:
+      #   cpu: 100m
+      #   memory: 128Mi
+
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+    volumeClaim:
+      storageClassName: nfs-client
+      
