@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
           fetch-depth: 1
 
       - name: Renovate Helm Releases
@@ -23,7 +23,7 @@ jobs:
       - name: Create pull request for renovatebot helm-release annotations
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
           branch: renovate-annotations
           delete-branch: true
           title: "chore(deps): update renovate annotations"
