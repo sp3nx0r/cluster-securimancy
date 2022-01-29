@@ -12,12 +12,15 @@ if [[ -z "${ipv6_cloudflare}" ]]; then
     exit 1
 fi
 
-# Merge rfc1918 ipv4, cloudflare ipv4, and cloudflare ipv6 ranges into one array
+# Merge cloudflare ipv4, and cloudflare ipv6 ranges into one array
 combined=$(jq \
     --argjson ipv4_cloudflare "${ipv4_cloudflare}" \
     --argjson ipv6_cloudflare "${ipv6_cloudflare}" \
     -n '$ipv4_cloudflare + $ipv6_cloudflare' \
 )
 
-# Output array as a string with \, as delimiter
-echo "${combined}" | jq --raw-output '. | join("\n    - ")'
+# Output array as a 4 indent yaml
+# output="$( "${combined}" | jq --raw-output '. | join("\n    - ")')"
+# echo "    - ${output}'"
+
+echo "${combined}" | yq e -P -I4 - | sed 's/^/    /' -

@@ -13,7 +13,10 @@ jobs:
     name: Sync Labels
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Sync Labels
         uses: EndBug/label-sync@v2
         with:
           config-file: .github/labels.yaml
+          token: $${{ secrets.TOKEN }}
