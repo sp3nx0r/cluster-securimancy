@@ -22,7 +22,7 @@ spec:
       pullPolicy: IfNotPresent
     args:
       - -shared-dev-num
-      - "2"
+      - '2'
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -31,4 +31,4 @@ spec:
                 - key: feature.node.kubernetes.io/custom-intel-gpu
                   operator: In
                   values:
-                    - "true"
+                    - 'true'

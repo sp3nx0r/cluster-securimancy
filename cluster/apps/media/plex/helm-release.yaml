@@ -20,35 +20,35 @@ spec:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.25.3.5409-f11334058
     env:
-      TZ: "America/Chicago"
+      TZ: America/Chicago
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${SVC_PLEX_ADDR}"
+        loadBalancerIP: ${SVC_PLEX_ADDR}
         externalTrafficPolicy: Cluster
         annotations:
           traefik.ingress.kubernetes.io/service.serversscheme: https
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "plex"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+          external-dns.alpha.kubernetes.io/target: ipv4.${SECRET_DOMAIN}
+          external-dns/is-public: 'true'
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: plex
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
         hosts:
-          - host: "plex.${SECRET_DOMAIN}"
+          - host: plex.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "plex.${SECRET_DOMAIN}"
-            secretName: "plex-tls"
+              - plex.${SECRET_DOMAIN}
+            secretName: plex-tls
     persistence:
       config:
         enabled: true
@@ -58,7 +58,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS_ADDR}"
+            server: ${NAS_ADDR}
             path: /storage/share/plex-data/
         mountPath: /data
         readOnly: false
@@ -74,14 +74,14 @@ spec:
                 - key: feature.node.kubernetes.io/custom-intel-gpu
                   operator: In
                   values:
-                    - "true"
+                    - 'true'
     podAnnotations:
       # backup.velero.io/backup-volumes: config
       # pre.hook.backup.velero.io/container: fsfreeze
       # pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
       # post.hook.backup.velero.io/container: fsfreeze
       # post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-      configmap.reloader.stakater.com/reload: "plex-promtail"
+      configmap.reloader.stakater.com/reload: plex-promtail
     resources:
       requests:
         gpu.intel.com/i915: 1

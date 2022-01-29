@@ -26,21 +26,21 @@ spec:
             - manager
           env:
             - name: vip_arp
-              value: "true"
+              value: 'true'
             - name: vip_interface
-              value: "eth0"
+              value: eth0
             - name: port
-              value: "6443"
+              value: '6443'
             - name: vip_cidr
-              value: "32"
+              value: '32'
             - name: cp_enable
-              value: "true"
+              value: 'true'
             - name: cp_namespace
               value: kube-system
             - name: svc_enable
-              value: "false"
+              value: 'false'
             - name: vip_address
-              value: "192.168.5.11"
+              value: 192.168.5.11
           securityContext:
             capabilities:
               add:
@@ -53,7 +53,7 @@ spec:
           ip: 127.0.0.1
       hostNetwork: true
       nodeSelector:
-        node-role.kubernetes.io/master: "true"
+        node-role.kubernetes.io/master: 'true'
       serviceAccountName: kube-vip
       tolerations:
         - key: node-role.kubernetes.io/master

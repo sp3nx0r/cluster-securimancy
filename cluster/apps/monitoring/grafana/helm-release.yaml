@@ -24,19 +24,19 @@ spec:
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
       GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-      GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_SECOND: "hh:mm:ss a"
-      GF_DATE_FORMATS_INTERVAL_MINUTE: "hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_HOUR: "DD/MM hh:mm a"
-      GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
-      GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
-      GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
-      VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
+      GF_DATE_FORMATS_FULL_DATE: MMM Do, YYYY hh:mm:ss a
+      GF_DATE_FORMATS_INTERVAL_SECOND: hh:mm:ss a
+      GF_DATE_FORMATS_INTERVAL_MINUTE: hh:mm a
+      GF_DATE_FORMATS_INTERVAL_HOUR: DD/MM hh:mm a
+      GF_DATE_FORMATS_INTERVAL_DAY: DD/MM
+      GF_DATE_FORMATS_INTERVAL_MONTH: MM-YYYY
+      GF_DATE_FORMATS_INTERVAL_YEAR: YYYY
+      VAR_BLOCKY_URL: http://blocky.networking.svc.cluster.local:4000
     admin:
-      existingSecret: "grafana-admin-secret"
+      existingSecret: grafana-admin-secret
     grafana.ini:
       server:
-        root_url: "https://grafana.${SECRET_DOMAIN}"
+        root_url: https://grafana.${SECRET_DOMAIN}
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
@@ -54,9 +54,9 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
+          - name: default
             orgId: 1
-            folder: ""
+            folder: ''
             type: file
             disableDeletion: false
             editable: true
@@ -140,17 +140,17 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: traefik
       annotations:
-        hajimari.io/enable: "true"
-        hajimari.io/icon: "weather-sunset"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        hajimari.io/enable: 'true'
+        hajimari.io/icon: weather-sunset
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
       hosts:
-        - "grafana.${SECRET_DOMAIN}"
+        - grafana.${SECRET_DOMAIN}
       tls:
         - hosts:
-            - "grafana.${SECRET_DOMAIN}"
+            - grafana.${SECRET_DOMAIN}
     serviceAccount:
       create: true
       autoMount: true

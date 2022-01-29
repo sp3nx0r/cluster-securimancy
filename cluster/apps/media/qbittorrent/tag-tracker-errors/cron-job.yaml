@@ -5,8 +5,8 @@ metadata:
   namespace: media
   name: tag-tracker-errors
 spec:
-  schedule: "0 * * * *"
-  concurrencyPolicy: "Forbid"
+  schedule: 0 * * * *
+  concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 5
   jobTemplate:
@@ -23,10 +23,10 @@ spec:
                 - name: QB_HOST
                   value: http://qbittorrent:8080
                 - name: QB_TAG
-                  value: "Tracker Errors"
+                  value: Tracker Errors
                 - name: QB_USERNAME
-                  value: "${SECRET_QB_USERNAME}"
+                  value: ${SECRET_QB_USERNAME}
                 - name: QB_PASSWORD
-                  value: "${SECRET_QB_PASSWORD}"
+                  value: ${SECRET_QB_PASSWORD}
               args:
-                - "/app/tag-tracker-errors.py"
+                - /app/tag-tracker-errors.py

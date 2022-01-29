@@ -17,12 +17,12 @@ spec:
   values:
     worker:
       annotations:
-        configmap.reloader.stakater.com/reload: "nfd-worker-conf"
+        configmap.reloader.stakater.com/reload: nfd-worker-conf
       securityContext:
         allowPrivilegeEscalation: false
         readOnlyRootFilesystem: true
       nodeSelector:
-        node-role.kubernetes.io/worker: "true"
+        node-role.kubernetes.io/worker: 'true'
       config: |-
         core:
           sources:

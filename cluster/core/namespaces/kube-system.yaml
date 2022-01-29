@@ -4,5 +4,5 @@ kind: Namespace
 metadata:
   name: kube-system
   labels:
-      goldilocks.fairwinds.com/enabled: "true"
-      networking/namespace: kube-system
+    goldilocks.fairwinds.com/enabled: 'true'
+    networking/namespace: kube-system

@@ -25,14 +25,14 @@ spec:
       className: traefik
       path: /
       annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
       hosts:
-        - "pushgateway.${SECRET_DOMAIN}"
+        - pushgateway.${SECRET_DOMAIN}
       tls:
         - hosts:
-            - "pushgateway.${SECRET_DOMAIN}"
-          secretName: "pushgateway-tls"
+            - pushgateway.${SECRET_DOMAIN}
+          secretName: pushgateway-tls
     serviceMonitor:
       enabled: true
       namespace: monitoring

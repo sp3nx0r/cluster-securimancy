@@ -20,25 +20,25 @@ spec:
       repository: ghcr.io/k8s-at-home/prowlarr-nightly
       tag: v0.2.0.1439
     env:
-      TZ: "America/Chicago"
+      TZ: America/Chicago
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "cloud-search"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: cloud-search
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
         hosts:
-          - host: "prowlarr.${SECRET_DOMAIN}"
+          - host: prowlarr.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "prowlarr.${SECRET_DOMAIN}"
+              - prowlarr.${SECRET_DOMAIN}
             secretName: prowlarr-tls
     persistence:
       config:

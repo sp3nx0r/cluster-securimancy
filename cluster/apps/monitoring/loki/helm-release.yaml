@@ -25,17 +25,17 @@ spec:
       enabled: true
       # ingressClassName: "traefik"
       annotations:
-        kubernetes.io/ingress.class: "traefik"
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
       hosts:
-        - host: "loki.${SECRET_DOMAIN}"
+        - host: loki.${SECRET_DOMAIN}
           paths:
             - /
       tls:
         - hosts:
-            - "loki.${SECRET_DOMAIN}"
-          secretName: "loki-tls"
+            - loki.${SECRET_DOMAIN}
+          secretName: loki-tls
     serviceMonitor:
       enabled: true
     config:
@@ -43,8 +43,8 @@ spec:
         aws:
           bucketnames: loki
           endpoint: minio.tools:9000
-          access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
-          secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
+          access_key_id: ${SECRET_MINIO_ACCESS_KEY}
+          secret_access_key: ${SECRET_MINIO_SECRET_KEY}
           s3forcepathstyle: true
           insecure: true
         boltdb_shipper:
@@ -78,7 +78,7 @@ spec:
               category: logs
             annotations:
               # TODO: Figure out how to use hostname in summary
-              summary: "SMART has reported failures"
+              summary: SMART has reported failures
       #
       # *arr applications
       #
@@ -93,7 +93,7 @@ spec:
               category: logs
             annotations:
               # TODO: Figure out how to use hostname in summary
-              summary: "An arr app is experiencing locked database issues"
+              summary: An arr app is experiencing locked database issues
       #
       # vaultwarden
       #
@@ -107,7 +107,7 @@ spec:
               severity: critical
               category: logs
             annotations:
-              summary: "Vaultwarden is unable to connect to postgresql"
+              summary: Vaultwarden is unable to connect to postgresql
 
   # TODO: https://github.com/grafana/helm-charts/pull/700
   postRenderers:
@@ -120,7 +120,7 @@ spec:
             patch:
               - op: add
                 path: /spec/ingressClassName
-                value: "traefik"
+                value: traefik
   #           patch:
   #             - op: replace
   #               path: /apiVersion

@@ -25,7 +25,7 @@ spec:
       strategy: RollingUpdate
       replicas: 2
     env:
-      TZ: "America/Chicago"
+      TZ: America/Chicago
     service:
       main:
         ports:
@@ -34,7 +34,7 @@ spec:
       dns:
         enabled: true
         type: LoadBalancer
-        loadBalancerIP: "${SVC_BLOCKY_ADDR}"
+        loadBalancerIP: ${SVC_BLOCKY_ADDR}
         ports:
           tcp:
             enabled: true
@@ -115,7 +115,7 @@ spec:
         accessMode: ReadWriteOnce
         size: 25G
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "blocky-config"
+      configmap.reloader.stakater.com/reload: blocky-config
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:

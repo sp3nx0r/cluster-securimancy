@@ -28,7 +28,7 @@ spec:
       enabled: true
       type: LoadBalancer
       spec:
-        loadBalancerIP: "${METALLB_TRAEFIK_ADDR}"
+        loadBalancerIP: ${METALLB_TRAEFIK_ADDR}
         externalTrafficPolicy: Local
     logs:
       general:
@@ -45,16 +45,16 @@ spec:
       dashboard:
         enabled: false
     globalArguments:
-      - "--api.insecure=true"
-      - "--serverstransport.insecureskipverify=true"
-      - "--providers.kubernetesingress.ingressclass=traefik"
-      - "--metrics.prometheus=true"
-      - "--metrics.prometheus.entryPoint=metrics"
-      - "--entryPoints.websecure.forwardedHeaders.trustedIPs=10.0.0.0/8,192.168.0.0/16,172.16.0.0/12"
+      - --api.insecure=true
+      - --serverstransport.insecureskipverify=true
+      - --providers.kubernetesingress.ingressclass=traefik
+      - --metrics.prometheus=true
+      - --metrics.prometheus.entryPoint=metrics
+      - --entryPoints.websecure.forwardedHeaders.trustedIPs=10.0.0.0/8,192.168.0.0/16,172.16.0.0/12
     additionalArguments:
-      - "--providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDR}"
-      - "--providers.kubernetesingress.allowexternalnameservices=true"
-      - "--providers.kubernetescrd.allowexternalnameservices=true"
+      - --providers.kubernetesingress.ingressendpoint.ip=${METALLB_TRAEFIK_ADDR}
+      - --providers.kubernetesingress.allowexternalnameservices=true
+      - --providers.kubernetescrd.allowexternalnameservices=true
     ports:
       traefik:
         expose: true
@@ -63,7 +63,7 @@ spec:
       websecure:
         tls:
           enabled: true
-          options: "default"
+          options: default
       metrics:
         port: 8082
         expose: true

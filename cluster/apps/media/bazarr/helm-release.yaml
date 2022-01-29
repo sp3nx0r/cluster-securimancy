@@ -20,26 +20,26 @@ spec:
       repository: ghcr.io/k8s-at-home/bazarr
       tag: v1.0.2
     env:
-      TZ: "America/Chicago"
+      TZ: America/Chicago
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "text"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: text
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
         hosts:
-          - host: "bazarr.${SECRET_DOMAIN}"
+          - host: bazarr.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "bazarr.${SECRET_DOMAIN}"
-            secretName: "bazarr-tls"
+              - bazarr.${SECRET_DOMAIN}
+            secretName: bazarr-tls
     podSecurityContext:
       runAsUser: 1001
       fsGroup: 1001
@@ -52,7 +52,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS_ADDR}"
+            server: ${NAS_ADDR}
             path: /storage/plex-data/Media
         mountPath: /media
     # resources:

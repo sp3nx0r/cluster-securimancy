@@ -23,19 +23,19 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: traefik
       annotations:
-        external-dns/is-public: "true"
+        external-dns/is-public: 'true'
         external-dns.alpha.kubernetes.io/target: ipv4.${SECRET_DOMAIN}
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-cloudflare@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-cloudflare@kubernetescrd
       hosts:
         - host: authentik.${SECRET_DOMAIN}
           paths:
             - path: /
       tls:
         - hosts:
-          - authentik.${SECRET_DOMAIN}
+            - authentik.${SECRET_DOMAIN}
 
     authentik:
       # secret_key: set by valuesFrom
@@ -53,15 +53,15 @@ spec:
         # password: set by valuesFrom
         use_tls: true
         use_ssl: false
-        from: "Authentik <authentik@${SECRET_DOMAIN}>"
+        from: Authentik <authentik@${SECRET_DOMAIN}>
 
       postgresql:
-        host: "{{ .Release.Name }}-postgresql"
+        host: '{{ .Release.Name }}-postgresql'
         name: authentik
         user: authentik
         # password: set by valuesFrom
       redis:
-        host: "{{ .Release.Name }}-redis-master"
+        host: '{{ .Release.Name }}-redis-master'
         # password: set by valuesFrom
 
     # resources:
@@ -119,10 +119,10 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
             - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                - k3s-worker-1
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - k3s-worker-1
 
   valuesFrom:
     - kind: Secret

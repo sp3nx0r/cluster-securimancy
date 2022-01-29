@@ -20,9 +20,9 @@ spec:
       tag: RELEASE.2022-01-28T02-28-16Z
     nameOverride: minio
     env:
-      MINIO_PROMETHEUS_AUTH_TYPE: "public"
-      MINIO_UPDATE: "off"
-      TZ: "America/Chicago"
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_UPDATE: 'off'
+      TZ: America/Chicago
     envFrom:
       - secretRef:
           name: minio
@@ -44,19 +44,19 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
           # TODO: Add hajimari annotations to minio ingress
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
         hosts:
-          - host: "minio.${SECRET_DOMAIN}"
+          - host: minio.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
                 service:
                   port: 9001
-          - host: "s3.${SECRET_DOMAIN}"
+          - host: s3.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
@@ -64,19 +64,19 @@ spec:
                   port: 9000
         tls:
           - hosts:
-              - "minio.${SECRET_DOMAIN}"
-              - "s3.${SECRET_DOMAIN}"
+              - minio.${SECRET_DOMAIN}
+              - s3.${SECRET_DOMAIN}
     persistence:
       config:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${NAS_ADDR}"
+            server: ${NAS_ADDR}
             path: /storage/minio
         mountPath: /data
     podAnnotations:
-      secret.reloader.stakater.com/reload: "minio"
+      secret.reloader.stakater.com/reload: minio
     resources:
       requests:
         memory: 100Mi

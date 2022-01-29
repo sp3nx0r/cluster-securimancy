@@ -1,3 +1,4 @@
+---
 # allow to/from traefik
 
 kind: NetworkPolicy
@@ -10,13 +11,13 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: vaultwarden
   ingress:
-  - ports:
-    - port: 80
-    - port: 3012
-    from:
-      - namespaceSelector:
-          matchLabels:
-            kubernetes.io/metadata.name: networking
-      - podSelector:
-          matchLabels:
-            app.kubernetes.io/name: traefik
+    - ports:
+        - port: 80
+        - port: 3012
+      from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: networking
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: traefik

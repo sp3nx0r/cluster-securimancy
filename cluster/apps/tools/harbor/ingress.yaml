@@ -5,21 +5,21 @@ metadata:
   name: harbor
   namespace: tools
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
-    hajimari.io/appName: "traefik"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "web"
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    hajimari.io/appName: traefik
+    hajimari.io/enable: 'true'
+    hajimari.io/icon: web
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: traefik
   tls:
     - hosts:
-        - "harbor.${SECRET_DOMAIN}"
-        - "notary.${SECRET_DOMAIN}"
-      secretName: "harbor-tls"
+        - harbor.${SECRET_DOMAIN}
+        - notary.${SECRET_DOMAIN}
+      secretName: harbor-tls
   rules:
-    - host: "harbor.${SECRET_DOMAIN}"
+    - host: harbor.${SECRET_DOMAIN}
       http:
         paths:
           - path: /
@@ -29,7 +29,7 @@ spec:
                 name: harbor
                 port:
                   number: 80
-    - host: "notary.${SECRET_DOMAIN}"
+    - host: notary.${SECRET_DOMAIN}
       http:
         paths:
           - path: /

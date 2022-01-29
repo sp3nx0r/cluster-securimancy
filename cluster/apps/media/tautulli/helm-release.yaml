@@ -20,27 +20,27 @@ spec:
       repository: ghcr.io/k8s-at-home/tautulli
       tag: v2.8.1
     env:
-      TZ: "America/Chicago"
+      TZ: America/Chicago
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/cluster-issuer: letsencrypt-production
           # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           # external-dns/is-public: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "chart-bar"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: chart-bar
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
         hosts:
-          - host: "tautulli.${SECRET_DOMAIN}"
+          - host: tautulli.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "tautulli.${SECRET_DOMAIN}"
+              - tautulli.${SECRET_DOMAIN}
             secretName: tautulli-tls
     persistence:
       config:

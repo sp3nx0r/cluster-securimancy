@@ -25,7 +25,7 @@ spec:
         allowDocker: false
         allowKubernetes: true
         allowPrefixes:
-          - "harbor.${SECRET_DOMAIN}"
+          - harbor.${SECRET_DOMAIN}
         allowImages: []
         disallowLocalPrefixes: []
         disallowLocalImages: []
@@ -37,16 +37,16 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: "traefik"
+      ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
       hosts:
-        - paths: ['/']
+        - paths: [/]
           host: trow.${SECRET_DOMAIN}
       tls:
         - hosts:
-           - trow.${SECRET_DOMAIN}
+            - trow.${SECRET_DOMAIN}
 
     resources: {}
       # We usually recommend not to specify default resources and to leave this as a conscious

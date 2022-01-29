@@ -5,18 +5,18 @@ metadata:
   name: router
   namespace: networking
   annotations:
-    hajimari.io/appName: "untangle"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "fire"
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+    hajimari.io/appName: untangle
+    hajimari.io/enable: 'true'
+    hajimari.io/icon: fire
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: traefik
   tls:
     - hosts:
-        - "untangle.${SECRET_DOMAIN}"
+        - untangle.${SECRET_DOMAIN}
   rules:
-    - host: "untangle.${SECRET_DOMAIN}"
+    - host: untangle.${SECRET_DOMAIN}
       http:
         paths:
           - path: /

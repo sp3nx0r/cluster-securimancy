@@ -5,20 +5,20 @@ metadata:
   name: proxmox
   namespace: networking
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
-    hajimari.io/appName: "proxmox"
-    hajimari.io/enable: "true"
-    hajimari.io/icon: "fire"
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    hajimari.io/appName: proxmox
+    hajimari.io/enable: 'true'
+    hajimari.io/icon: fire
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: traefik
   tls:
     - hosts:
-        - "proxmox.${SECRET_DOMAIN}"
-      secretName: "proxmox-tls"
+        - proxmox.${SECRET_DOMAIN}
+      secretName: proxmox-tls
   rules:
-    - host: "proxmox.${SECRET_DOMAIN}"
+    - host: proxmox.${SECRET_DOMAIN}
       http:
         paths:
           - path: /

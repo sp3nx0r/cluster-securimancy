@@ -5,8 +5,8 @@ metadata:
   name: cloudflare-ddns
   namespace: networking
 spec:
-  schedule: "*/5 * * * *"
-  concurrencyPolicy: "Forbid"
+  schedule: '*/5 * * * *'
+  concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 5
   jobTemplate:
@@ -23,8 +23,8 @@ spec:
                 - secretRef:
                     name: cloudflare-ddns
               command:
-                - "/bin/sh"
-                - "/app/cloudflare-ddns.sh"
+                - /bin/sh
+                - /app/cloudflare-ddns.sh
               volumeMounts:
                 - name: cloudflare-ddns
                   mountPath: /app/cloudflare-ddns.sh
@@ -38,5 +38,5 @@ spec:
               configMap:
                 name: cloudflare-ddns
                 items:
-                - key: cloudflare-ddns.sh
-                  path: cloudflare-ddns.sh
+                  - key: cloudflare-ddns.sh
+                    path: cloudflare-ddns.sh

@@ -19,37 +19,37 @@ spec:
     externalURL: https://harbor.${SECRET_DOMAIN}
     persistence:
       enabled: true
-      resourcePolicy: "keep"
+      resourcePolicy: keep
       persistentVolumeClaim:
         registry:
           storageClass: nfs-client-fast
-          subPath: "registry"
+          subPath: registry
           size: 50Gi
         chartmuseum:
           storageClass: nfs-client-fast
-          subPath: "chartmuseum"
+          subPath: chartmuseum
           size: 50Gi
         jobservice:
           storageClass: nfs-client-fast
           size: 10Gi
         database:
           storageClass: nfs-client-fast
-          subPath: "database"
+          subPath: database
           size: 10Gi
         redis:
           storageClass: nfs-client-fast
-          subPath: "redis"
+          subPath: redis
           size: 10Gi
         trivy:
           storageClass: nfs-client-fast
-          subPath: "trivy"
+          subPath: trivy
           size: 50Gi
     expose:
       type: clusterIP
       tls:
         enabled: false
     trivy:
-      gitHubToken: "${GITHUB_TRIVVY_TOKEN}"
+      gitHubToken: ${GITHUB_TRIVVY_TOKEN}
 
   # Original cut not working
     # expose:
@@ -101,23 +101,23 @@ spec:
     #         # Only needed when the "expose.type" is "ingress".
     #         notarySecretName: ""
 
-    # # The external URL for Harbor core service. It is used to
-    # # 1) populate the docker/helm commands showed on portal
-    # # 2) populate the token service URL returned to docker/notary client
-    # #
-    # # Format: protocol://domain[:port]. Usually:
-    # # 1) if "expose.type" is "ingress", the "domain" should be
+     #  # The external URL for Harbor core service. It is used to
+     #  # 1) populate the docker/helm commands showed on portal
+     #  # 2) populate the token service URL returned to docker/notary client
+     #  #
+     #  # Format: protocol://domain[:port]. Usually:
+     #  # 1) if "expose.type" is "ingress", the "domain" should be
     # # the value of "expose.ingress.hosts.core"
-    # # 2) if "expose.type" is "clusterIP", the "domain" should be
+     #  # 2) if "expose.type" is "clusterIP", the "domain" should be
     # # the value of "expose.clusterIP.name"
-    # # 3) if "expose.type" is "nodePort", the "domain" should be
-    # # the IP address of k8s node
-    # #
-    # # If Harbor is deployed behind the proxy, set it as the URL of proxy
+     #  # 3) if "expose.type" is "nodePort", the "domain" should be
+     #  # the IP address of k8s node
+     #  #
+     #  # If Harbor is deployed behind the proxy, set it as the URL of proxy
     # externalURL: https://harbor.${SECRET_DOMAIN}
 
-    # # The internal TLS used for harbor components secure communicating. In order to enable https
-    # # in each components tls cert files need to provided in advance.
+     #  # The internal TLS used for harbor components secure communicating. In order to enable https
+     #  # in each components tls cert files need to provided in advance.
     # internalTLS:
     #   # If internal TLS enabled
     #   enabled: true
@@ -185,13 +185,13 @@ spec:
     #   ipv4:
     #     enabled: true
 
-    # # The persistence is enabled by default and a default StorageClass
-    # # is needed in the k8s cluster to provision volumes dynamicly.
+     #  # The persistence is enabled by default and a default StorageClass
+     #  # is needed in the k8s cluster to provision volumes dynamicly.
     # # Specify another StorageClass in the "storageClass" or set "existingClaim"
-    # # if you have already existing persistent volumes to use
-    # #
-    # # For storing images and charts, you can also use "azure", "gcs", "s3",
-    # # "swift" or "oss". Set it in the "imageChartStorage" section
+     #  # if you have already existing persistent volumes to use
+     #  #
+     #  # For storing images and charts, you can also use "azure", "gcs", "s3",
+     #  # "swift" or "oss". Set it in the "imageChartStorage" section
     # persistence:
     #   enabled: true
     #   # Setting it to "keep" to avoid removing PVCs during a helm delete
@@ -269,37 +269,37 @@ spec:
     #     type: filesystem
     #     filesystem:
     #       rootdirectory: /storage
-    #       #maxthreads: 100
+    #        # maxthreads: 100
 
     # imagePullPolicy: IfNotPresent
 
-    # # Use this set to assign a list of default pullSecrets
+     #  # Use this set to assign a list of default pullSecrets
     # imagePullSecrets:
-    # #  - name: docker-registry-secret
+     #  #  - name: docker-registry-secret
 
-    # # The update strategy for deployments with persistent volumes(jobservice, registry
+     #  # The update strategy for deployments with persistent volumes(jobservice, registry
     # # and chartmuseum): "RollingUpdate" or "Recreate"
-    # # Set it as "Recreate" when "RWM" for volumes isn't supported
+     #  # Set it as "Recreate" when "RWM" for volumes isn't supported
     # updateStrategy:
     #   type: RollingUpdate
 
-    # # debug, info, warning, error or fatal
+     #  # debug, info, warning, error or fatal
     # logLevel: info
 
-    # # The initial password of Harbor admin. Change it from portal after launching Harbor
+     #  # The initial password of Harbor admin. Change it from portal after launching Harbor
     # harborAdminPassword: "changeme"
 
-    # # The name of the secret which contains key named "ca.crt". Setting this enables the
-    # # download link on portal to download the certificate of CA when the certificate isn't
-    # # generated automatically
+     #  # The name of the secret which contains key named "ca.crt". Setting this enables the
+     #  # download link on portal to download the certificate of CA when the certificate isn't
+     #  # generated automatically
     # caSecretName: ""
 
-    # # The secret key used for encryption. Must be a string of 16 chars.
-    # # $(echo $RANDOM | md5sum | head -c 16; echo;)
+     #  # The secret key used for encryption. Must be a string of 16 chars.
+     #  # $(echo $RANDOM | md5sum | head -c 16; echo;)
     # secretKey: "7c2e89af0b1e856a"
 
-    # # The proxy settings for updating trivy vulnerabilities from the Internet and replicating
-    # # artifacts from/to the registries that cannot be reached directly
+     #  # The proxy settings for updating trivy vulnerabilities from the Internet and replicating
+     #  # artifacts from/to the registries that cannot be reached directly
     # proxy:
     #   httpProxy:
     #   httpsProxy:
@@ -310,17 +310,17 @@ spec:
     #     - trivy
 
     # # The custom ca bundle secret, the secret must contain key named "ca.crt"
-    # # which will be injected into the trust store for chartmuseum, core, jobservice, registry, trivy components
+     #  # which will be injected into the trust store for chartmuseum, core, jobservice, registry, trivy components
     # # caBundleSecretName: ""
 
-    # ## UAA Authentication Options
-    # # If you're using UAA for authentication behind a self-signed
-    # # certificate you will need to provide the CA Cert.
-    # # Set uaaSecretName below to provide a pre-created secret that
-    # # contains a base64 encoded CA Certificate named `ca.crt`.
-    # # uaaSecretName:
+     #  ## UAA Authentication Options
+     #  # If you're using UAA for authentication behind a self-signed
+     #  # certificate you will need to provide the CA Cert.
+     #  # Set uaaSecretName below to provide a pre-created secret that
+     #  # contains a base64 encoded CA Certificate named `ca.crt`.
+     #  # uaaSecretName:
 
-    # # If expose the service via "ingress", the Nginx will not be used
+     #  # If expose the service via "ingress", the Nginx will not be used
     # nginx:
     #   image:
     #     repository: goharbor/nginx-photon

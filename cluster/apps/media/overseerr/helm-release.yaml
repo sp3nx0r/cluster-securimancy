@@ -20,29 +20,29 @@ spec:
       repository: ghcr.io/sct/overseerr
       tag: 1.28.0
     env:
-      TZ: "America/Chicago"
-      LOG_LEVEL: "info"
+      TZ: America/Chicago
+      LOG_LEVEL: info
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: traefik
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/cluster-issuer: letsencrypt-production
           # external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           # external-dns/is-public: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "eye-circle"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: eye-circle
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
         hosts:
-          - host: "requests.${SECRET_DOMAIN}"
+          - host: requests.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "requests.${SECRET_DOMAIN}"
-            secretName: "requests-tls"
+              - requests.${SECRET_DOMAIN}
+            secretName: requests-tls
     persistence:
       config:
         enabled: true

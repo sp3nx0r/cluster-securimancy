@@ -17,7 +17,7 @@ spec:
       interval: 5m
   values:
     communications:
-      existingSecretName: "botkube-communications"
+      existingSecretName: botkube-communications
     serviceMonitor:
       enabled: true
     config:
@@ -28,29 +28,8 @@ spec:
           enabled: true
           restrictAccess: true
           commands:
-            verbs:
-              [
-                "api-resources",
-                "api-versions",
-                "cluster-info",
-                "describe",
-                "diff",
-                "explain",
-                "get",
-                "logs",
-                "top",
-                "auth",
-              ]
-            resources:
-              [
-                "deployments",
-                "pods",
-                "namespaces",
-                "daemonsets",
-                "statefulsets",
-                "storageclasses",
-                "nodes",
-              ]
+            verbs: [api-resources, api-versions, cluster-info, describe, diff, explain, get, logs, top, auth]
+            resources: [deployments, pods, namespaces, daemonsets, statefulsets, storageclasses, nodes]
       resources:
         - name: v1/pods
           namespaces:

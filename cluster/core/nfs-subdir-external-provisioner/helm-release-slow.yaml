@@ -5,7 +5,7 @@ metadata:
   name: nfs-subdir-external-provisioner
   namespace: kube-system
   labels:
-    kustomize.toolkit.fluxcd.io/substitute: "disabled"
+    kustomize.toolkit.fluxcd.io/substitute: disabled
 spec:
   interval: 5m
   chart:
@@ -19,10 +19,10 @@ spec:
   values:
     nfs:
       server: 192.168.5.10
-      path: "/storage"
+      path: /storage
     storageClass:
       reclaimPolicy: Retain
       defaultClass: true
       name: nfs-client
       accessModes: ReadWriteMany
-      pathPattern: "${.PVC.namespace}-${.PVC.name}"
+      pathPattern: ${.PVC.namespace}-${.PVC.name}

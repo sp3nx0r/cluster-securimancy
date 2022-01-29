@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   name: falco-system
   labels:
-      goldilocks.fairwinds.com/enabled: "true"
+    goldilocks.fairwinds.com/enabled: 'true'

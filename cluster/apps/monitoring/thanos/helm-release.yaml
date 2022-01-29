@@ -31,11 +31,11 @@ spec:
         sidecarsNamespace: monitoring
       ingress:
         enabled: true
-        hostname: "thanos.${SECRET_DOMAIN}"
-        ingressClassName: "traefik"
+        hostname: thanos.${SECRET_DOMAIN}
+        ingressClassName: traefik
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
         tls: true
     existingObjstoreSecret: thanos-objstore
     queryFrontend:

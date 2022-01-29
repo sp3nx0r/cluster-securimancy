@@ -18,7 +18,7 @@ spec:
   values:
     image:
       registry: public.ecr.aws
-    timezone: "America/Chicago"
+    timezone: America/Chicago
     containerd:
       enabled: true
       socket: /var/run/k3s/containerd/containerd.sock
@@ -33,7 +33,7 @@ spec:
       jsonIncludeOutputProperty: true
       httpOutput:
         enabled: true
-        url: "http://falco-sidekick-falcosidekick:2801"
+        url: http://falco-sidekick-falcosidekick:2801
       grpc:
         enabled: true
       grpcOutput:

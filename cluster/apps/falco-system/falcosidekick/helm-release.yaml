@@ -29,18 +29,18 @@ spec:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/cluster-issuer: letsencrypt-production
         kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-        traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
       hosts:
-        - host: "falcosidekick.${SECRET_DOMAIN}"
+        - host: falcosidekick.${SECRET_DOMAIN}
           paths:
             - path: /
       tls:
         - hosts:
-            - "falcosidekick.${SECRET_DOMAIN}"
-          secretName: "falcosidekick-tls"
+            - falcosidekick.${SECRET_DOMAIN}
+          secretName: falcosidekick-tls
     webui:
       enabled: true
       # image:
@@ -48,12 +48,12 @@ spec:
       ingress:
         enabled: true
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/cluster-issuer: letsencrypt-production
           kubernetes.io/ingress.class: traefik
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-          traefik.ingress.kubernetes.io/router.middlewares: "networking-authentik@kubernetescrd"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: networking-authentik@kubernetescrd
         hosts:
-          - host: "falcosidekick-ui.${SECRET_DOMAIN}"
+          - host: falcosidekick-ui.${SECRET_DOMAIN}
             paths:
               - path: /ui
               - path: /events
@@ -61,5 +61,5 @@ spec:
               - path: /ws
         tls:
           - hosts:
-              - "falcosidekick-ui.${SECRET_DOMAIN}"
-            secretName: "falcosidekick-ui-tls"
+              - falcosidekick-ui.${SECRET_DOMAIN}
+            secretName: falcosidekick-ui-tls
