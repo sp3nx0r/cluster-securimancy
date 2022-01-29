@@ -1,0 +1,30 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: imageswap-webhook
+  labels:
+    app: imageswap
+    resource: mutatingwebhookconfiguration
+webhooks:
+  - name: imageswap.webhook.k8s.twr.io
+    clientConfig:
+      service:
+        name: imageswap
+        namespace: imageswap-system
+        path: "/"
+      caBundle: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkRENDQVJ1Z0F3SUJBZ0lRZkJPVWMxbTd1WTB0TnJXK0gwTHlWVEFLQmdncWhrak9QUVFEQWpBUE1RMHcKQ3dZRFZRUUtFd1J1YVd3eE1DQVhEVEl4TVRJeE1ESXlOVGcxTUZvWUR6SXhNakV4TVRFMk1qSTFPRFV3V2pBUApNUTB3Q3dZRFZRUUtFd1J1YVd3eE1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRUFSN2w1cXo3CnB2YWpNdHArMVA4VnVFQUlxbWgrTEVXSlc4MTBJWEowcXBWMm5keXhkeEtKWUtwVWZ4Vm5aZm5QNHZMZUNETGwKYVBwTWZhbUdOdEE5djZOWE1GVXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRgpCd01CTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkl1cFZWd0lkbVZ1Zks1TXByMHpha2pOCmxmOXZNQW9HQ0NxR1NNNDlCQU1DQTBjQU1FUUNJQkJweElaOFV2aUo2QmR1UjVMZzNxTUd1ZlpJdmhPVU1waXIKQ0xTYS9mS1NBaUI1YU1BdGpKVytiTCtDOVY2QzZpL29EckFJa1N2ZmE3NExHRTN1c1lOS1Z3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+    rules:
+      - operations:
+          - CREATE
+          - UPDATE
+        apiGroups:
+          - "*"
+        apiVersions:
+          - "*"
+        resources:
+          - "pods"
+    failurePolicy: Fail
+    reinvocationPolicy: IfNeeded
+    namespaceSelector:
+      matchLabels:
+        k8s.twr.io/imageswap: "enabled"

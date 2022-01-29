@@ -1,0 +1,21 @@
+resources:
+  - imageswap-cluster-rbac.yaml
+  - imageswap-ns-rbac.yaml
+  - imageswap-deploy.yaml
+  - imageswap-env-cm.yaml
+  - imageswap-hpa.yaml
+  - imageswap-pdb.yaml
+  - imageswap-sa.yaml
+  - imageswap-svc.yaml
+
+configMapGenerator:
+- name: imageswap-mwc-template
+  files:
+  -  imageswap-mwc=imageswap-mwc.yaml
+  options:
+    disableNameSuffixHash: true
+- name: imageswap-maps
+  files:
+  -  imageswap-maps=imageswap-maps.conf
+  options:
+    disableNameSuffixHash: true
