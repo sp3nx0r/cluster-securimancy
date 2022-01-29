@@ -27,7 +27,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: "${{ secrets.TOKEN }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
           branch: github-action/renovate-kah-library-chart
           delete-branch: true
           title: "chore(github-action): update kah library chart"
