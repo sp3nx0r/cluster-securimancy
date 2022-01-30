@@ -20,4 +20,4 @@ jobs:
         uses: EndBug/label-sync@v2
         with:
           config-file: .github/labels.yaml
-          token: $${{ secrets.TOKEN }}
+          token: ${{ secrets.TOKEN }}
