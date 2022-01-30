@@ -43,6 +43,8 @@ spec:
           secretName: falcosidekick-tls
     webui:
       enabled: true
+      # image:
+      #   registry: public.ecr.aws
       ingress:
         enabled: true
         annotations:
