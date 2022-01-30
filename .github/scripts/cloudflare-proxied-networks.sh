@@ -23,4 +23,4 @@ combined=$(jq \
 # output="$( "${combined}" | jq --raw-output '. | join("\n    - ")')"
 # echo "    - ${output}'"
 
-echo "${combined}" | yq e -P -I4 - | sed 's/^/    /' -
+echo "${combined}" | yq e -P -I4 - | sed 's/^/      /' -
