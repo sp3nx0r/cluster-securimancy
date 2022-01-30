@@ -5,8 +5,7 @@ resources:
   - calico-system
   - cert-manager-dashboard
   - default
-  # TODO: temp disable until we get resourcing under control, MAN it eats the RAM
-  # - falco-system
+  - falco-system
   - flux-system-addons
   - goldilocks
   - kube-system
