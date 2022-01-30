@@ -83,7 +83,7 @@
         "ansible/.+\\.yml$"
       ],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: \"(?<currentValue>.*)\"\n"
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION: \"(?<currentValue>.*)\"\n"
       ],
       "datasourceTemplate": "github-releases"
     }
