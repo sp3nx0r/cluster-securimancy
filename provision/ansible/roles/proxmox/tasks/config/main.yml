@@ -39,3 +39,7 @@
 - include: postfix.yml
   tags:
     - postfix
+
+- include: qm_restart_cron.yml
+  tags:
+    - qm_restart_cron

@@ -1,0 +1,26 @@
+---
+- name: Install qm restart bash script
+  ansible.builtin.copy:
+    dest: /usr/local/bin/qm_restart.sh
+    mode: 0700
+    content: |
+      #! /bin/bash
+      # VMIDs start at 100
+      i=100
+      while true; do
+        result=$(/usr/sbin/qm status $i 2>/dev/null)
+          if [[ "$result" == "status: stopped" ]]; then
+            /usr/sbin/qm start $i
+            logger -t QM_RESTART -p user.info -- "restarted VM $i"
+          elif [[ -z "$result" ]]; then
+            break
+          fi
+          ((i++))
+      done
+
+- name: Run qm restart script every 5 minutes
+  ansible.builtin.cron:
+    name: "qm restart cronjob"
+    minute: "*/5"
+    job: "/usr/local/bin/qm_restart.sh"
+    user: root
