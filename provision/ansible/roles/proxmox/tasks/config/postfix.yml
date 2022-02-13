@@ -1,0 +1,34 @@
+---
+- name: Add main.cf for Proxmox to send emails via Sendgrid
+  ansible.builtin.copy:
+    dest: /etc/postfix/main.cf
+    content: |
+      smtp_sasl_auth_enable = yes
+      smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+      smtp_sasl_security_options = noanonymous
+      smtp_sasl_tls_security_options = noanonymous
+      smtp_tls_security_level = encrypt
+      header_size_limit = 4096000
+      relayhost = [smtp.sendgrid.net]:587
+      mydomain = {{SECRET_DOMAIN}}
+      myhostname = {{SECRET_DOMAIN}}
+
+- name: Add sasl config for Proxmox to send emails via Sendgrid
+  ansible.builtin.copy:
+    mode: 600
+    dest: /etc/postfix/sasl_passwd
+    content: |
+      [smtp.sendgrid.net]:587 apikey:{{SENDGRID_API_KEY}}
+  register: postfix_sasl_passwd
+
+- name: Execute postmap
+  when: postfix_sasl_passwd.changed
+  ansible.builtin.command: postmap /etc/postfix/sasl_passwd
+
+- name: Restart postfix service
+  when: postfix_sasl_passwd.changed
+  ansible.builtin.systemd:
+    name: postfix
+    state: restarted
+    enabled: true
+    daemon_reload: true

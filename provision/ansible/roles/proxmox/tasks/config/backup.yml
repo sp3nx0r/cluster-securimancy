@@ -52,6 +52,7 @@
     state: restarted
     enabled: true
     daemon_reload: true
+  when: template.changed or service.changed
   loop:
     - { interval: "daily" }
     - { interval: "weekly" }

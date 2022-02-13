@@ -1,5 +1,6 @@
 kind: Secret
 SECRET_DOMAIN: ENC[AES256_GCM,data:7rVTu0SncpZoMaKDJCzn,iv:XskIi47dewbZabZl6GLAPFhhzprBlOjhtlYFgK9HrAU=,tag:Wbv1+p/PGCqF1Z5a8Se/qw==,type:str]
+SENDGRID_API_KEY: ENC[AES256_GCM,data:mx7xqLgFaxH1xXV1H5hV/xMXSojaVW2ReZVKxPQ0ZmeNXhfLINiUJtsd7/DZ4p8lmFdIT4rW2sc5LG03HczAcdXVNR8w,iv:MFDCT2Ldqs/MUEXdehtP+vdzON0TbRY7sVVEjZc5jBw=,tag:4EmnfzA02BKK2D9P4lLF5A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -15,8 +16,8 @@ sops:
             VmFYZWhmM040ZkZxdFN1bTJlWUIvL1EKVezwxjxu5cS2DrmxS/dXsoAcoUv40DEO
             iH5HyMNeSmfsh3FySazucBP6RWqaKMdfCtgNzVkm3qb9iL5D7TKC5g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2021-12-05T18:51:04Z"
-    mac: ENC[AES256_GCM,data:/QLa5H0N3MwXV5EqF10DNwjYxHWU0rbEODDwf6SDCK/jUoehjQwZHJOWQQYeAg7aMMr7v6/nIwZtlwzDCofLDZolyfwt5WyYz1m2ZwT7rfGrDKghX+KEQXrxjGlwzLviaX6UcgCW1oBUOu1PMCICAHrHFnliDyfHytFB99mhz04=,iv:g0hqidV1gGHCMkqL+AglLcdueKK9GwoxZhLvZsjAQoY=,tag:aZcM0cYPaxp4mXzARc4P4A==,type:str]
+    lastmodified: "2022-02-13T15:59:53Z"
+    mac: ENC[AES256_GCM,data:4O6HtAUE632ccBY5P+OE4iOp7j/s9S2TI4R919BnkmMu5/Jiom7IcHSdtyWcd5Usn7dMnH2gAO3Di6Lqe4so57rK9sUCFzIHCOi0GtHXxlS7z4/mXBz3SQwf09lbOcrEL4I+LZSg7hUYRxYxKQa49sRba2qBe9fLsop9yrzHxbA=,iv:IwCnW9IECLKduKq5Bz0VWukfX+S2/O8CkZ/1Mngol8A=,tag:JH41gtF5flxkehyDhbsvDA==,type:str]
     pgp: []
     unencrypted_regex: ^(kind)$
     version: 3.7.1

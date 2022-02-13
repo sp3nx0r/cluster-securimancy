@@ -35,3 +35,7 @@
 - include: backup.yml
   tags:
     - backup
+
+- include: postfix.yml
+  tags:
+    - postfix

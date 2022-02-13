@@ -21,6 +21,7 @@
       - curl
       - iputils-ping
       - ipvsadm
+      - libsasl2-modules
       - lvm2
       - net-tools
       - nfs-common
