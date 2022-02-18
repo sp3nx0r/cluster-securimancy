@@ -1,0 +1,7 @@
+# run a weekly cron to cleanup freespace for the lvm thin provisioned disks
+- name: Run fstrim every week
+  ansible.builtin.cron:
+    name: "fstrim -v /"
+    special_time: weekly
+    job: "fstrim -v /"
+    user: root
