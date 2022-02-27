@@ -37,10 +37,10 @@ spec:
         loadBalancerIP: ${SVC_BLOCKY_ADDR}
         ports:
           tcp:
-            enabled: true
-            port: 53
-            protocol: TCP
-            targetPort: 53
+            # enabled: true
+            # port: 53
+            # protocol: TCP
+            # targetPort: 53
           udp:
             enabled: true
             port: 53
