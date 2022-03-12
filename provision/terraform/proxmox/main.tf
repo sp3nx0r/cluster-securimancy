@@ -29,8 +29,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
   os_type     = "cloud-init"
   agent       = 1
   memory      = var.num_k3s_masters_mem
-  cores       = 2
-  # TODO: add discard/trim config setting to qemu
+  cores       = var.num_k3s_master_cores
 
   ipconfig0  = "ip=192.168.5.8${count.index}/24,gw=${var.nameserver}"
   nameserver = var.nameserver
@@ -44,8 +43,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_workers" {
   os_type     = "cloud-init"
   agent       = 1
   memory      = var.num_k3s_nodes_mem
-  cores       = 2
-  # TODO: add discard/trim config setting to qemu
+  cores       = var.num_k3s_nodes_cores
 
   ipconfig0  = "ip=192.168.5.9${count.index}/24,gw=${var.nameserver}"
   nameserver = var.nameserver
