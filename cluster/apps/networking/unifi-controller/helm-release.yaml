@@ -21,7 +21,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        externalIPs: ${SVC_UNIFI_CONTROLLER}
+        loadBalancerIP: ${SVC_UNIFI_CONTROLLER_ADDR}
         ports:
           speedtest:
             enabled: false

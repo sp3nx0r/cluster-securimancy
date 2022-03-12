@@ -16,13 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: ghcr.io/0xerr0r/blocky
-      tag: v0.18
     controller:
-      enabled: true
-      type: deployment
-      strategy: RollingUpdate
       replicas: 2
     env:
       TZ: America/Chicago
@@ -31,27 +25,46 @@ spec:
         ports:
           http:
             port: 4000
-      dns:
+      dns-tcp:
+        annotations:
+          metallb.universe.tf/allow-shared-ip: shared
         enabled: true
         type: LoadBalancer
         loadBalancerIP: ${SVC_BLOCKY_ADDR}
         ports:
-          tcp:
-            # enabled: true
-            # port: 53
-            # protocol: TCP
-            # targetPort: 53
-          udp:
+          dns-tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+            targetPort: 53
+      dns-udp:
+        annotations:
+          metallb.universe.tf/allow-shared-ip: shared
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_BLOCKY_ADDR}
+        ports:
+          dns-udp:
             enabled: true
             port: 53
             protocol: UDP
             targetPort: 53
-        externalTrafficPolicy: Local
+    persistence:
+      whitelists:
+        enabled: true
+        mountPath: /app/whitelists
+        type: custom
+        volumeSpec:
+          configMap:
+            name: blocky-whitelist
+      logs:
+        enabled: true
+        mountPath: /app/logs
+        storageClass: nfs-client
+        accessMode: ReadWriteOnce
+        size: 25G
     metrics:
       enabled: true
-      serviceMonitor:
-        interval: 30s
-        scrapeTimeout: 10s
       prometheusRule:
         enabled: true
     config: |
@@ -95,45 +108,21 @@ spec:
       httpPort: 4000
       logFormat: json
       logLevel: info
-      disableIPv6: true
+      disableIPv6: false
       queryLog:
-        dir: /app/logs
+        target: /app/logs
         type: csv
-        logRetentionDays: 14
-    persistence:
-      whitelists:
-        enabled: true
-        mountPath: /app/whitelists
-        type: custom
-        volumeSpec:
-          configMap:
-            name: blocky-whitelist
-      logs:
-        enabled: true
-        mountPath: /app/logs
-        storageClass: nfs-client
-        accessMode: ReadWriteOnce
-        size: 25G
+        logRetentionDays: 7
     podAnnotations:
       configmap.reloader.stakater.com/reload: blocky-config
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - blocky
-              topologyKey: kubernetes.io/hostname
     resources:
       requests:
         memory: 477M
         cpu: 100m
       limits:
         memory: 700M
-    securityContext:
-      allowPrivilegeEscalation: false
-      readOnlyRootFilesystem: true
+    # securityContext:
+    #   capabilities:
+    #     add: ["NET_BIND_SERVICE"]
+    #   allowPrivilegeEscalation: false
+    #   readOnlyRootFilesystem: true
