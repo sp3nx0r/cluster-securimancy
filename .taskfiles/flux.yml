@@ -19,5 +19,5 @@ tasks:
   taints:
     desc: Apply labels and taints
     cmds:
-      - for i in {0..2}; do kubectl label nodes k3s-worker-$i node-role.kubernetes.io/worker=true; done
-      - for i in {0..2}; do kubectl taint nodes k3s-master-$i node-role.kubernetes.io/master=:NoSchedule; done
+      - for i in {0..2}; do kubectl label nodes k8s-worker-$i node-role.kubernetes.io/worker=true; done
+      - for i in {0..2}; do kubectl taint nodes k8s-master-$i node-role.kubernetes.io/master=:NoSchedule; done
