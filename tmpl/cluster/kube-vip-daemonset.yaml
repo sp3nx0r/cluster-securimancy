@@ -26,21 +26,21 @@ spec:
             - manager
           env:
             - name: vip_arp
-              value: 'true'
+              value: "true"
             - name: vip_interface
-              value: ${BOOTSTRAP_ANSIBLE_KUBE_VIP_INTERFACE}
+              value: "${BOOTSTRAP_ANSIBLE_KUBE_VIP_INTERFACE}"
             - name: port
-              value: '6443'
+              value: "6443"
             - name: vip_cidr
-              value: '32'
+              value: "32"
             - name: cp_enable
-              value: 'true'
+              value: "true"
             - name: cp_namespace
               value: kube-system
             - name: svc_enable
-              value: 'false'
-            - name: vip_address
-              value: ${BOOTSTRAP_ANSIBLE_KUBE_VIP_ADDRESS}
+              value: "false"
+            - name: address
+              value: "${BOOTSTRAP_ANSIBLE_KUBE_VIP_ADDRESS}"
           securityContext:
             capabilities:
               add:
@@ -51,10 +51,19 @@ spec:
             - kubernetes
           ip: 127.0.0.1
       hostNetwork: true
-      nodeSelector:
-        node-role.kubernetes.io/master: 'true'
       serviceAccountName: kube-vip
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
       tolerations:
-        - key: node-role.kubernetes.io/master
+        - effect: NoSchedule
           operator: Exists
-          effect: NoSchedule
+        - effect: NoExecute
+          operator: Exists
