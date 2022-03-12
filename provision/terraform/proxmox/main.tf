@@ -29,7 +29,7 @@ resource "proxmox_vm_qemu" "proxmox_vm_master" {
   os_type     = "cloud-init"
   agent       = 1
   memory      = var.num_k3s_masters_mem
-  cores       = var.num_k3s_master_cores
+  cores       = var.num_k3s_masters_cores
 
   ipconfig0  = "ip=192.168.5.8${count.index}/24,gw=${var.nameserver}"
   nameserver = var.nameserver
