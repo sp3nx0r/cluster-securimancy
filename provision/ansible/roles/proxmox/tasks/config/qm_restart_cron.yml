@@ -3,6 +3,7 @@
   ansible.builtin.copy:
     dest: /usr/local/bin/qm_restart.sh
     mode: 0700
+    force: true
     content: |
       #! /bin/bash
       # VMIDs start at 100
