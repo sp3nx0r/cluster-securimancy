@@ -2,10 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: router
+  name: unifi-router
   namespace: networking
   annotations:
-    hajimari.io/appName: untangle
+    hajimari.io/appName: unifi
     hajimari.io/enable: 'true'
     hajimari.io/icon: fire
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -14,9 +14,9 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - untangle.${SECRET_DOMAIN}
+        - unifi.${SECRET_DOMAIN}
   rules:
-    - host: untangle.${SECRET_DOMAIN}
+    - host: unifi.${SECRET_DOMAIN}
       http:
         paths:
           - path: /

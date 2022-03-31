@@ -70,10 +70,11 @@ spec:
     config: |
       upstream:
         default:
-          - tcp+udp:${GATEWAY_ADDR}
-      conditional:
+          - 9.9.9.9
+          - 1.1.1.1
+      customDNS:
         mapping:
-          ${SECRET_DOMAIN}: tcp+udp:${GATEWAY_ADDR}
+          unifi.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
       blocking:
         blackLists:
           ads:

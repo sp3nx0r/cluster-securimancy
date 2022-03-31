@@ -10,5 +10,5 @@ resources:
   - plex-docker
   - prometheus-rule.yaml
   - proxmox
-  - router
   - service-monitor.yaml
+  - unifi-router
