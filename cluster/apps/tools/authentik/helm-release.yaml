@@ -123,6 +123,8 @@ spec:
                   operator: In
                   values:
                     - k3s-worker-1
+                    # adding because I f'd up the hostnames originally and too lazy to rebuild, remove later
+                    - k8s-worker-1
 
   valuesFrom:
     - kind: Secret
