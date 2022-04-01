@@ -23,6 +23,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: router
+                name: unifi-router
                 port:
                   number: 8080
