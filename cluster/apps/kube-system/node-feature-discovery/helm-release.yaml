@@ -15,36 +15,32 @@ spec:
         name: node-feature-discovery-charts
         namespace: flux-system
   values:
+    nodeFeatureRule:
+      createCRD: true
     worker:
       annotations:
-        configmap.reloader.stakater.com/reload: nfd-worker-conf
+        configmap.reloader.stakater.com/reload: node-feature-discovery-worker-conf
       securityContext:
         allowPrivilegeEscalation: false
         readOnlyRootFilesystem: true
       nodeSelector:
         node-role.kubernetes.io/worker: 'true'
-      config: |-
+      config:
         core:
           sources:
-          - custom
-          - pci
-          - usb
+            - custom
+            - pci
+            - usb
         sources:
           usb:
             deviceClassWhitelist:
-            - "02"
-            - "03"
-            - "0e"
-            - "ef"
-            - "fe"
-            - "ff"
+              - "02"
+              - "03"
+              - "0e"
+              - "ef"
+              - "fe"
+              - "ff"
             deviceLabelFields:
-            - "class"
-            - "vendor"
-            - "device"
-          custom:
-          - name: "intel-gpu"
-            matchOn:
-            - pciId:
-                class: ["0300"]
-                vendor: ["8086"]
+              - class
+              - vendor
+              - device
