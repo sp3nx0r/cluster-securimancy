@@ -25,4 +25,4 @@ spec:
               service:
                 name: unifi-router
                 port:
-                  number: 8080
+                  number: 443
