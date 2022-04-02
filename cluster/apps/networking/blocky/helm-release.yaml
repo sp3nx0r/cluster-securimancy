@@ -74,9 +74,28 @@ spec:
           - 1.1.1.1
       customDNS:
         mapping:
-          plex.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
-          proxmox.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
-          unifi.${SECRET_DOMAIN}: ${GATEWAY_ADDR}
+          bazarr.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          goldilocks.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          grafana.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          hajimari.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          harbor.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          loki.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          minio.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          notary.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          prowlarr.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          proxmox.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          pushgateway.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          qb.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          radarr.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          readarr.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          requests.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          s3.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          sabnzbd.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          sonarr.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          tautulli.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          traefik.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          unifi.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
+          uptime.${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
       blocking:
         blackLists:
           ads:
