@@ -39,7 +39,6 @@ spec:
         tls:
           - hosts:
               - sabnzbd.${SECRET_DOMAIN}
-            secretName: sabnzbd-tls
     podSecurityContext:
       runAsUser: 1001
       fsGroup: 1001

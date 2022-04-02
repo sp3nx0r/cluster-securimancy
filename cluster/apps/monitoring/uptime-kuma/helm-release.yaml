@@ -49,7 +49,6 @@ spec:
         tls:
           - hosts:
               - uptime.${SECRET_DOMAIN}
-            secretName: uptime-tls
     persistence:
       config:
         enabled: true

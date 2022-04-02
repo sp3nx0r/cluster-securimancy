@@ -42,7 +42,6 @@ spec:
         tls:
           - hosts:
               - requests.${SECRET_DOMAIN}
-            secretName: requests-tls
     persistence:
       config:
         enabled: true

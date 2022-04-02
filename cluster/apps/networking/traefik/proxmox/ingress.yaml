@@ -16,7 +16,6 @@ spec:
   tls:
     - hosts:
         - proxmox.${SECRET_DOMAIN}
-      secretName: proxmox-tls
   rules:
     - host: proxmox.${SECRET_DOMAIN}
       http:

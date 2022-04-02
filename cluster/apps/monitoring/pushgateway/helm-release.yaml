@@ -32,7 +32,6 @@ spec:
       tls:
         - hosts:
             - pushgateway.${SECRET_DOMAIN}
-          secretName: pushgateway-tls
     serviceMonitor:
       enabled: true
       namespace: monitoring

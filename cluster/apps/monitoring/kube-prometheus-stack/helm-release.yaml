@@ -85,7 +85,6 @@ spec:
         tls:
           - hosts:
               - alert-manager.${SECRET_DOMAIN}
-            secretName: alert-manager-tls
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
@@ -187,7 +186,6 @@ spec:
         tls:
           - hosts:
               - prometheus.${SECRET_DOMAIN}
-            secretName: prometheus-tls
       thanosService:
         enabled: true
       thanosServiceMonitor:

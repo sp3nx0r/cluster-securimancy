@@ -16,7 +16,6 @@ spec:
   tls:
     - hosts:
         - goldilocks.${SECRET_DOMAIN}
-      secretName: goldilocks-tls
   rules:
     - host: goldilocks.${SECRET_DOMAIN}
       http:

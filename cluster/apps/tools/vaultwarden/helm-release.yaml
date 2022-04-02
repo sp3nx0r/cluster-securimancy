@@ -58,7 +58,6 @@ spec:
         tls:
           - hosts:
               - vw.${SECRET_DOMAIN}
-            secretName: vaultwarden-tls
     persistence:
       config:
         enabled: true

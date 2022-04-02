@@ -40,7 +40,6 @@ spec:
       tls:
         - hosts:
             - falcosidekick.${SECRET_DOMAIN}
-          secretName: falcosidekick-tls
     webui:
       enabled: true
       # image:
@@ -62,4 +61,3 @@ spec:
         tls:
           - hosts:
               - falcosidekick-ui.${SECRET_DOMAIN}
-            secretName: falcosidekick-ui-tls
