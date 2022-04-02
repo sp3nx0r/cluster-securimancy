@@ -25,6 +25,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: plex
+                name: plex-docker
                 port:
                   number: 32400
