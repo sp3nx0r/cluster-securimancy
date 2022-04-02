@@ -74,6 +74,9 @@ spec:
           - 1.1.1.1
       customDNS:
         mapping:
+          plex.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
+          proxmox.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
+          unifi.${SECRET_DOMAIN}: ${GATEWAY_ADDR}
           ${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
       blocking:
         blackLists:
