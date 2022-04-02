@@ -77,7 +77,6 @@ spec:
           plex.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
           proxmox.${SECRET_DOMAIN}: ${PROXMOX_ADDR}
           unifi.${SECRET_DOMAIN}: ${GATEWAY_ADDR}
-          ${SECRET_DOMAIN}: ${METALLB_TRAEFIK_ADDR}
       blocking:
         blackLists:
           ads:
