@@ -11,5 +11,6 @@ resources:
   - metallb-system.yaml
   - monitoring.yaml
   - networking.yaml
+  - system-upgrade.yaml
   - tools.yaml
   - tor.yaml
