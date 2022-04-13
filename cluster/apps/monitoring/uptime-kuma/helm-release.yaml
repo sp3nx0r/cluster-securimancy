@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: louislam/uptime-kuma
-      tag: 1.13.2-alpine
+      tag: 1.14.0-alpine
       pullPolicy: Always
     nameOverride: uptime-kuma
     env:
