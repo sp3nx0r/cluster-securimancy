@@ -1,2 +1,4 @@
 www.${SECRET_DOMAIN}
 ads.reddit.com
+reddit-ads-terraform.s3.amazonaws.com
+reddit-ads-staging-terraform.s3.amazonaws.com
