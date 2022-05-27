@@ -1,19 +1,29 @@
-# Editors
-.vscode/
 # Trash
 .DS_Store
 Thumbs.db
-# k8s
-kubeconfig
-# vscode-sops
-.decrypted~*.yaml
-.config.env
-*.agekey
+# Binaries
+bin
+/flux
+*.iso
+# Temp folders
+.temp*
+.private/
+.logs/
+.task/
 # Ansible
 xanmanning.k3s*
-geerlingguy.*
+geerlingguy.docker*
+geerlingguy.pip*
 # Terraform
 .terraform
 .terraform.tfstate*
 terraform.tfstate*
-.terraform.lock.hcl
+# Sops
+.decrypted~*
+*.agekey
+# Kubernetes
+kubeconfig*
+*.pub
+*.key
+# Initial setup leftovers
+.config.env
