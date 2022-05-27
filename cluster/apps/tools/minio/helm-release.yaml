@@ -8,10 +8,11 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: /charts/kah-common/
+      chart: operator
+      version: 4.4.21
       sourceRef:
-        kind: GitRepository
-        name: flux-system
+        kind: HelmRepository
+        name: minio-charts
         namespace: flux-system
       interval: 5m
   values:
