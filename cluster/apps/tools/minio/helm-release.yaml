@@ -5,85 +5,65 @@ metadata:
   name: minio
   namespace: tools
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: operator
-      version: 4.4.21
+      chart: minio
+      version: 11.6.1
       sourceRef:
         kind: HelmRepository
-        name: minio-charts
+        name: bitnami-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
-    image:
-      repository: quay.io/minio/minio
-      tag: RELEASE.2022-05-26T05-48-41Z
-    nameOverride: minio
-    env:
-      MINIO_PROMETHEUS_AUTH_TYPE: public
-      MINIO_UPDATE: 'off'
-      TZ: America/Chicago
-    envFrom:
-      - secretRef:
-          name: minio
-    args:
-      - server
-      - /data
-      - --console-address
-      - :9001
-    service:
-      main:
-        enabled: true
-        ports:
-          http:
-            enabled: true
-            port: 9001
-          api:
-            enabled: true
-            port: 9000
+    extraEnvVars:
+      - name: TZ
+        value: "${TIMEZONE}"
+      - name: MINIO_PROMETHEUS_URL
+        value: http://kube-prometheus-stack-prometheus.monitoring:9090
+      - name: MINIO_PROMETHEUS_JOB_ID
+        value: minio
+      - name: MINIO_UPDATE
+        value: "off"
+      - name: MINIO_BROWSER_REDIRECT_URL
+        value: "https://minio.${SECRET_DOMAIN}"
+      - name: MINIO_SERVER_URL
+        value: "https://s3.${SECRET_DOMAIN}"
+    auth:
+      existingSecret: minio-creds
     ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        annotations:
-          # TODO: Add hajimari annotations to minio ingress
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
-        hosts:
-          - host: minio.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9001
-          - host: s3.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9000
-        tls:
-          - hosts:
-              - minio.${SECRET_DOMAIN}
-              - s3.${SECRET_DOMAIN}
+      enabled: true
+      ingressClassname: "traefik"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
+      hostname: "minio.${SECRET_DOMAIN}"
+      tls: "true"
+    apiIngress:
+      enabled: true
+      ingressClassname: "traefik"
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: networking-rfc1918@kubernetescrd
+      hostname: "s3.${SECRET_DOMAIN}"
+      tls: "true"
+    podSecurityContext:
+      enabled: true
+      fsGroup: 100
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 568
+      runAsNonRoot: true
     persistence:
-      config:
+      enabled: true
+      existingClaim: minio-nfs
+    prometheus:
+      servicemonitor:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDR}
-            path: /storage/minio
-        mountPath: /data
-    podAnnotations:
-      secret.reloader.stakater.com/reload: minio
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 100m
-      limits:
-        memory: 750Mi
-    securityContext:
-      allowPrivilegeEscalation: false
-      # readOnlyRootFilesystem: true
