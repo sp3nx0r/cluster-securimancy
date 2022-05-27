@@ -23,7 +23,7 @@ jobs:
         run: helm repo update
       - name: Update helm dependencies
         run: helm dep update
-        working-directory: charts/kah-common
+        working-directory: cluster/charts/kah-common
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         with:
