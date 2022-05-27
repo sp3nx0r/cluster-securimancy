@@ -39,23 +39,20 @@ tasks:
         fluxcd/tap/flux
         gitleaks
         go-task/tap/go-task
-        helm
         ipcalc
         jq
-        kubernetes-cli
         kustomize
         pre-commit
         prettier
         sops
         stern
-        terraform
         yamllint
         yq
 
   verify:
     desc: Verify env settings
     cmds:
-      - ./configure --verify
+      - ./configure.sh --verify
 
   configure:
     desc: Configure repository from env settings
