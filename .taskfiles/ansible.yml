@@ -12,72 +12,72 @@ tasks:
 
   deps:
     desc: Upgrade Ansible galaxy deps
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-galaxy install -r requirements.yml --force"
 
   list:
     desc: List all the hosts
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --list-hosts"
 
   playbook:proxmox-prepare:
     desc: Upgrade and prepare Proxmox host
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook --limit proxmox -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/proxmox-prepare.yml"
 
   playbook:ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-prepare.yml"
 
   playbook:ubuntu-upgrade:
     desc: Upgrade all the k8s nodes operating system
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-upgrade.yml"
 
   playbook:ubuntu-harden:
     desc: Harden all the k8s nodes operating system
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-harden.yml"
 
   playbook:k3s-install:
     desc: Install Kubernetes on the nodes
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-install.yml"
 
   playbook:k3s-nuke:
     desc: Remove Kubernetes on all nodes
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
 
   adhoc:ping:
     desc: Ping all the hosts
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -m 'ping'"
 
   adhoc:uptime:
     desc: Uptime of all the hosts
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - ansible all -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --one-line -a 'uptime'
 
   adhoc:reboot:
     desc: Reboot all the k8s nodes
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/usr/bin/systemctl reboot' --become"
 
   adhoc:poweroff:
     desc: Shutdown all the k8s nodes
-    dir: provision/ansible
+    dir: ansible
     cmds:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml -a '/usr/bin/systemctl poweroff' --become"
