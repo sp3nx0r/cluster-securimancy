@@ -5,10 +5,12 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 5m0s
   ref:
     branch: main
-  url: https://github.com/sp3nx0r/cluster-securimancy
+  url: ssh://git@github.com/sp3nx0r/cluster-securimancy
+  secretRef:
+    name: github-deploy-key
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
