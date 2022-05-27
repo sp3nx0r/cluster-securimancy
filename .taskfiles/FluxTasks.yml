@@ -16,8 +16,14 @@ tasks:
       - kubectl apply -k ./cluster/base/flux-system
       - kubectl apply -k ./cluster/base/flux-system
 
-  taints:
-    desc: Apply labels and taints
+  hr-restart:
+    desc: Restart all failed Helm Releases
     cmds:
-      - for i in {0..2}; do kubectl label nodes k8s-worker-$i node-role.kubernetes.io/worker=true; done
-      - for i in {0..2}; do kubectl taint nodes k8s-master-$i node-role.kubernetes.io/master=:NoSchedule; done
+      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux suspend hr $0 -n $1'
+      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux resume hr $0 -n $1'
+
+  stats:
+    desc: List Flux statuses that are abnormal
+    cmds:
+      - flux get all
+      - flux get hr -A | grep -v succeed
