@@ -1,28 +1,28 @@
 ---
-- include: locale.yml
+- include_tasks: locale.yml
   tags:
     - locale
 
-- include: packages.yml
+- include_tasks: packages.yml
   tags:
     - packages
 
-- include: network.yml
+- include_tasks: network.yml
   tags:
     - network
 
-- include: filesystem.yml
+- include_tasks: filesystem.yml
   tags:
     - filesystem
 
-- include: user.yml
+- include_tasks: user.yml
   tags:
     - user
 
-- include: aliases.yml
+- include_tasks: aliases.yml
   tags:
     - aliases
 
-- include: fstrim_cronjob.yml
+- include_tasks: fstrim_cronjob.yml
   tags:
     - fstrim_cronjob

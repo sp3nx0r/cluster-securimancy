@@ -1,45 +1,45 @@
 ---
-- include: apt-sources.yml
+- include_tasks: apt-sources.yml
   tags:
     - apt-sources
 
-- include: packages.yml
+- include_tasks: packages.yml
   tags:
     - packages
 
-- include: filesystem.yml
+- include_tasks: filesystem.yml
   tags:
     - filesystem
 
 # TODO: Enabling IOMMU breaks networking stack in Proxmox, need to research
-# - include: iommu-passthrough.yml
+# - include_tasks: iommu-passthrough.yml
 #   tags:
 #     - iommu
 
-- include: nfs-server.yml
+- include_tasks: nfs-server.yml
   tags:
     - nfs-server
 
-- include: preferences.yml
+- include_tasks: preferences.yml
   tags:
     - preferences
 
-- include: ups.yaml
+- include_tasks: ups.yaml
   tags:
     - ups
 
-- include: aliases.yml
+- include_tasks: aliases.yml
   tags:
     - aliases
 
-- include: backup.yml
+- include_tasks: backup.yml
   tags:
     - backup
 
-- include: postfix.yml
+- include_tasks: postfix.yml
   tags:
     - postfix
 
-- include: qm_restart_cron.yml
+- include_tasks: qm_restart_cron.yml
   tags:
     - qm_restart_cron

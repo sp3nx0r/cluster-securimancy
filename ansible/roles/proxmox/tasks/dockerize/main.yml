@@ -8,26 +8,26 @@
     - /storage/docker/apps
     - /storage/docker/data
 
-- include: cadvisor.yml
+- include_tasks: cadvisor.yml
   tags:
     - cadvisor
 
-- include: node-exporter.yml
+- include_tasks: node-exporter.yml
   tags:
     - node-exporter
 
-- include: watchtower.yml
+- include_tasks: watchtower.yml
   tags:
     - watchtower
 
-- include: promtail.yml
+- include_tasks: promtail.yml
   tags:
     - promtail
 
-- include: docker.yml
+- include_tasks: docker.yml
   tags:
     - docker
 
-- include: plex.yml
+- include_tasks: plex.yml
   tags:
     - plex
