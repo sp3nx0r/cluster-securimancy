@@ -12,7 +12,7 @@ tasks:
     desc: Create Flux setup
     cmds:
       - kubectl create namespace flux-system
-      - cat ~/.config/sops/age/keys.txt | kubectl --kubeconfig=./provision/kubeconfig -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+      - cat ~/.config/sops/age/keys.txt | kubectl --kubeconfig=./kubeconfig -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
       - kubectl apply -k ./cluster/base/flux-system
       - kubectl apply -k ./cluster/base/flux-system
 
