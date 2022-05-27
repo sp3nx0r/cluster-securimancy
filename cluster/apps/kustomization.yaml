@@ -8,7 +8,6 @@ resources:
   # TODO: temp disable until we get resourcing under control, MAN it eats the RAM
   # - falco-system
   - flux-system-addons
-  - goldilocks
   - kube-system
   - media
   - monitoring

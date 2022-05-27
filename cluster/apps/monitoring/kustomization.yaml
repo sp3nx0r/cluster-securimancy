@@ -3,17 +3,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # - blackbox-exporter
+  # - generic-rules
   - botkube
+  - goldilocks
   - grafana
   - kube-prometheus-stack
   - loki
-  # - promtail
-  - pushgateway
-  # - snmp-exporter-pdu-0
-  # - snmp-exporter-pdu-1
-  # - snmp-exporter-ups-0
+  # - node-problem-detector
   - speedtest-exporter
   - thanos
   - unifi-poller
-  - uptime-kuma
   # - uptimerobot-heartbeat
