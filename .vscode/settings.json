@@ -1,0 +1,24 @@
+{
+    "ansible.ansibleLint.arguments": "-c .github/linters/.ansible-lint",
+    "discord.enabled": true,
+    "files.associations": {
+        "*.json5": "jsonc",
+        "**/ansible/**/*.yml": "ansible",
+        "**/ansible/**/*.sops.yml": "yaml",
+        "**/ansible/**/inventory/**/*.yml": "yaml",
+        "**/terraform/**/*.tf": "terraform"
+    },
+    "material-icon-theme.folders.associations": {
+        ".taskfiles": "utils"
+    },
+    "prettier.configPath": ".github/linters/.prettierrc.yaml",
+    "prettier.ignorePath": ".github/linters/.prettierignore",
+    "yaml.schemas": {
+        "Kubernetes": "cluster/*.yaml"
+    },
+    "editor.fontLigatures": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
+    "editor.hover.delay": 100,
+    "explorer.autoReveal": false
+}
