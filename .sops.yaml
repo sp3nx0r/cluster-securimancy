@@ -1,6 +1,6 @@
 ---
 creation_rules:
-  - path_regex: provision/.*\.sops\.ya?ml
+  - path_regex: ansible/.*\.sops\.ya?ml
     unencrypted_regex: "^(kind)$"
     age: >-
       age1uks2xtgfcjk5cfzv40jm3ar9yl3jzdpea0jcta9zsa00td0r8shqx07umn
